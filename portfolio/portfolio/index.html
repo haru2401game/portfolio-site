@@ -7,7 +7,9 @@
 <style>
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+    background: #0f0f10;
+    color: white;
 }
 
 .hero {
@@ -39,18 +41,45 @@ body {
     pointer-events: none;
 }
 
+.hero-profile {
+    position: absolute;
+    left: 40px;
+    bottom: 40px;
+    z-index: 20;
+}
+
+.hero-profile h1 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.hero-profile p {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: 6px;
+}
+
 /* カード */
-.card{
-    position:absolute;
-    top:50%;
-    left:50%;
-    width:320px;
-    height:180px;
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 340px;
+    height: 200px;
     z-index: 10;
-    border-radius:16px;
-    overflow:hidden;
+
     transform: translate(-50%, -50%);
-    cursor: pointer;
+    transform-origin: center;
+
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    cursor: auto;
 }
 
 .card img{
@@ -61,6 +90,93 @@ body {
 
 .card:active {
     transform: translate(-50%, -50%) scale(0.95);
+}
+
+.card:hover {
+    transform: translate(-50%, -50%) scale(1.03);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+
+.card-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 12px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.work-info {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    z-index: 5;
+
+    text-align: center;
+
+    background: rgba(20, 20, 20, 0.55);
+    backdrop-filter: blur(14px);
+
+    padding: 14px 28px;
+    border-radius: 16px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+
+    pointer-events: none;
+}
+
+.work-info h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.work-info p {
+    font-size: 13px;
+    opacity: 0.75;
+}
+
+.work-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.work-card .media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+}
+
+.work-card .media img,
+.work-card .media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    display: block;
+}
+
+.work-card video {
+    opacity: 0;
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    pointer-events: none;
+}
+
+.work-card:hover video {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /* テキスト */
@@ -78,6 +194,14 @@ body {
 
 .hero-text p {
     opacity: 0.8;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 80%);
+    z-index: 1;
 }
 
 .bg1 { opacity: 1; }
@@ -233,10 +357,19 @@ body {
 
 section {
     padding: 80px 20px;
+    transform: translateZ(0);
+    will-change: transform, opacity;
 }
 
 section:nth-of-type(even) {
-    background: #f9f9f9;
+    background: #f6f7fb;
+    color: #111;
+}
+
+section:nth-of-type(even) h2,
+section:nth-of-type(even) p,
+section:nth-of-type(even) li {
+    color: #111;
 }
 
 .container {
@@ -244,11 +377,24 @@ section:nth-of-type(even) {
     margin: 0 auto;
 }
 
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.8;
+}
+
 </style>
 </head>
 
+<!-- フォント導入 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
 <body>
 
+<!-- トップ作品スライド -->
 <div class="hero">
 
     <div class="hero-bg-left bg1"></div>
@@ -259,40 +405,102 @@ section:nth-of-type(even) {
     <div class="card"><img></div>
     <div class="card"><img></div>
 
-    <div class="hero-text">
-        <h1 id="title"></h1>
+    <!-- 自分情報 -->
+    <div class="hero-profile">
+        <h1>長屋 晴太</h1>
+        <p>ゲームプログラマー志望 / Unity(C#),C++(Dxlib&DirectXTK)</p>
+    </div>
+
+    <!-- 作品情報 -->
+    <div class="work-info">
+        <h2 id="title"></h2>
         <p id="desc"></p>
     </div>
 
 </div>
 
+<section>
+    <div class="container">
+
+    <h2>PROFILE</h2>
+
+    <p style="font-size:18px; font-weight:bold;">
+    Unityを用いたUI設計を得意とするゲームプログラマー志望です。
+    </p>
+
+    <ul>
+        <li>個人でゲーム設計〜実装まで一貫開発可能</li>
+        <li>ステージ生成・ゲームループ・UI設計を実装経験あり</li>
+        <li>Unity / C++（DxLib / DirectXTK）で複数作品制作</li>
+    </ul>
+
+    </div>
+</section>
+
+<!-- アピール作品 -->
+<section>
+    <div class="container">
+        <h2>代表作品</h2>
+
+        <div class="work-card">
+
+            <div class="media">
+                <img src="images/ClickHero.png">
+                <video src="videos/ClickHero.mp4" muted loop></video>
+            </div>
+
+            <h3>Click Hero</h3>
+            <p>クリック×放置ゲーム / Unity</p>
+
+            <h4>■ Purpose(目的)</h4>
+            <p>短時間で気持ちよさを得られるゲーム設計</p>
+
+            <h4>■ My Role(担当)</h4>
+            <p>企画 / 実装 / UI設計 / 演出</p>
+
+            <h4>■ Tech(技術)</h4>
+            <ul>
+                <li>クリックフィードバック演出</li>
+                <li>数値バランス設計</li>
+            </ul>
+
+            <h4>■ Challenge(課題)</h4>
+            <p>プレイヤーの離脱を防ぐテンポ調整</p>
+
+            <a href="info/ClickHero_info.html">詳細を見る →</a>
+        </div>
+    </div>
+</section>
+
 <!-- 自己紹介 -->
 <section>
-    <h2>プロフィール</h2>
+    <div class="container">
+        <h2>プロフィール</h2>
 
-    <div class="profile-box">
-        <img src="images/profile.webp" class="profile-icon">
+        <div class="profile-box">
+            <img src="images/profile.png" class="profile-icon">
 
-        <div class="profile-text">
+            <div class="profile-text">
 
-            <h3 class="profile-name">長屋 晴太</h3>
-            <p class="profile-role">ゲームプログラマー志望</p>
-            <p class="profile-meta">愛知県在住 / 専門学校生 / 2028年卒予定</p>
+                <h3 class="profile-name">長屋 晴太</h3>
+                <p class="profile-role">ゲームプログラマー志望</p>
+                <p class="profile-meta">愛知県在住 / 専門学校生 / 2028年卒予定</p>
 
-            <p>
-                専門学校でゲームプログラミングを学びながら、<br>
-                Unity / C++を用いた2D・3Dアクションゲームの個人開発を行っています。
-            </p>
+                <p>
+                    専門学校でゲームプログラミングを学びながら、<br>
+                    Unity / C++を用いた2D・3Dゲームの個人開発を行っています。
+                </p>
 
-            <p>
-                これまでに複数の作品を制作し、<br>
-                「世界反転」や「時間操作」などのゲームシステムを実装してきました。
-            </p>
+                <p>
+                    これまでに複数の作品を制作し、<br>
+                    「世界反転」や「時間操作」などのゲームシステムを実装してきました。
+                </p>
 
-            <p>
-                また、ゲーム制作ブログを1年以上継続し、100記事以上を投稿するなど、<br>
-                技術の言語化と継続的な成長にも取り組んでいます。
-            </p>
+                <p>
+                    また、ゲーム制作ブログを1年以上継続し、100記事以上を投稿するなど、<br>
+                    技術の言語化と継続的な成長にも取り組んでいます。
+                </p>
+            </div>
         </div>
     </div>
 </section>
@@ -349,7 +557,7 @@ section:nth-of-type(even) {
             <div class="skill-info">
                 <div class="skill-top">
                     <h3>C++ / DirectXTK</h3>
-                    <span class="level beginner">中級</span>
+                    <span class="level intermediate">中級</span>
                 </div>
 
                 <p class="skill-desc">
@@ -404,244 +612,339 @@ section:nth-of-type(even) {
     </div>
 </section>
 
-    <h2>強み</h2>
-
-    <p>
-        私の強みは「継続力」と「行動力」です。<br>
-        ゲーム制作ブログを1年以上継続し、100記事以上投稿しています。
-    </p>
-
-    <p>
-        また、入学後すぐにチーム制作やコンテストに挑戦するなど、
-        自ら行動して経験を積んできました。
-    </p>
-</section>
-
+<!-- 強み -->
 <section>
-    <h2>活動</h2>
+    <div class="container">
+        <h2>強み</h2>
 
-    <ul>
-        <li>ゲーム制作ブログ運営（100記事以上）</li>
-        <li>ゲームジャム参加</li>
-        <li>チーム開発経験あり</li>
-    </ul>
+        <h3>継続力</h3>
+        <p>
+            ゲーム制作ブログを1年以上継続し、100記事以上を投稿しました。  
+            技術を言語化することで理解を深め、実装力の向上につなげています。
+        </p>
+
+        <h3>行動力</h3>
+        <p>
+            入学1ヶ月でチーム制作に参加し、コンテストに応募しました。  
+            またゲームジャムにも参加し、短期間での開発経験を積んでいます。
+        </p>
+    </div>
 </section>
 
+<!-- 技術力 -->
 <section>
-    <h2>リンク</h2>
+<div class="container">
 
-    <a href="https://note.com/ha_03ru_01">ブログ</a>
+    <h2>TECHNICAL FOCUS</h2>
+
+    <h3>■ ゲーム設計</h3>
+    <p>状態管理・ゲームループ・UI遷移設計</p>
+
+    <h3>■ UXを意識したプレイ体験</h3>
+    <p>遊びやすさ・気持ちよさを意識した作品制作</p>
+
+    <h3>■ 最適化意識</h3>
+    <p>Update依存を減らした設計・軽量化意識</p>
+
+</div>
 </section>
 
+<!-- 活動 -->
+<section>
+    <div class="container">
+        <h2>ACTIVITY</h2>
+
+        <ul>
+            <li>ゲーム制作ブログ 100記事以上継続(1年以上)</li>
+            <li>ゲームジャム参加（短期開発経験）</li>
+            <li>チーム開発経験あり</li>
+        </ul>
+    </div>
+</section>
+
+<!-- リンク -->
+<section>
+    <div class="container">
+        <h2>リンク</h2>
+
+        <a href="https://note.com/ha_03ru_01">ブログ</a><br>
+        <a href="https://github.com/haru2401game">GitHub</a>
+    </div>
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
 <script>
-const works = [
-    { img:"images/FlipMaze.png", url:"info/FlipMaze_info.html", color:"linear-gradient(#fff,#ddd)", title:"Flip Maze", desc:"3Dアクション×反転"},
-    { img:"images/PotionBerserker.png", url:"info/PotionBerserker_info.html", color:"linear-gradient(#2c2c2c,#6b6b6b)", title:"POTION BERSERKER", desc:"2Dアクション×組み合わせ"},
-    { img:"images/ReturnRecord.png", url:"info/ReturnRecord_info.html", color:"linear-gradient(#000,#2b2b2b)", title:"RETURN RECORD", desc:"2Dアクション×時間操作"},
-    { img:"images/ClickHero.png", url:"info/ClickHero_info.html", color:"linear-gradient(#e0e0e0,#bbb)", title:"Click Hero", desc:"クリック×放置"},
-    { img:"images/OverFish.png", url:"info/OverFish_info.html", color:"linear-gradient(#1e90ff,#00bcd4)", title:"Over Fish", desc:"2Dアクション×タワーディフェンス"},
-    { img:"images/DeepDungeon.png", url:"info/DeepDungeon_info.html", color:"linear-gradient(#2ecc71,#27ae60)", title:"Deep Dungeon", desc:"2Dアクション×ローグライク"},
-    { img:"images/Koutei.png", url:"info/Koutei_info.html", color:"linear-gradient(#00bcd4,#4dd0e1)", title:"コウテイぺんぎん", desc:"2Dアクション"},
-    { img:"images/Angel.png", url:"info/Angel_info.html", color:"linear-gradient(#fff,#f5f5f5)", title:"がんばれ！天使ちゃん", desc:"2Dミニゲーム×マルチエンド"},
-    { img:"images/HookingBox.png", url:"info/HookingBox_info.html", color:"linear-gradient(#000,#3a3a3a)", title:"HOOKING BOX", desc:"2D×ワイヤーアクション"}
-];
 
-const INTERVAL = 3;
-const POS = [0, 450, 750];
-const easeType = "power3.inOut";
+class PortfolioSlider {
+    constructor() {
+        this.index = 0;
+        this.isAnimating = false;
 
-let index = 0;
-let isAnimating = false;
+        this.INTERVAL = 3000;
+        this.POS = [0, 450, 750];
+        this.easeType = "power3.inOut";
 
-const $ = s => document.querySelector(s);
-const $$ = s => [...document.querySelectorAll(s)];
+        this.works = [
+            { img:"images/FlipMaze.png", url:"info/FlipMaze_info.html", color:"linear-gradient(#fff,#ddd)", title:"Flip Maze", desc:"3Dアクション×反転"},
+            { img:"images/PotionBerserker.png", url:"info/PotionBerserker_info.html", color:"linear-gradient(#2c2c2c,#6b6b6b)", title:"POTION BERSERKER", desc:"2Dアクション×組み合わせ"},
+            { img:"images/ReturnRecord.png", url:"info/ReturnRecord_info.html", color:"linear-gradient(#000,#2b2b2b)", title:"RETURN RECORD", desc:"2Dアクション×時間操作"},
+            { img:"images/ClickHero.png", url:"info/ClickHero_info.html", color:"linear-gradient(#e0e0e0,#bbb)", title:"Click Hero", desc:"クリック×放置"},
+            { img:"images/OverFish.png", url:"info/OverFish_info.html", color:"linear-gradient(#1e90ff,#00bcd4)", title:"Over Fish", desc:"2Dアクション×タワーディフェンス"},
+            { img:"images/DeepDungeon.png", url:"info/DeepDungeon_info.html", color:"linear-gradient(#2ecc71,#27ae60)", title:"Deep Dungeon", desc:"2Dアクション×ローグライク"},
+            { img:"images/Koutei.png", url:"info/Koutei_info.html", color:"linear-gradient(#00bcd4,#4dd0e1)", title:"コウテイぺんぎん", desc:"2Dアクション"},
+            { img:"images/Angel.png", url:"info/Angel_info.html", color:"linear-gradient(#fff,#f5f5f5)", title:"がんばれ！天使ちゃん", desc:"2Dミニゲーム×マルチエンド"},
+            { img:"images/HookingBox.png", url:"info/HookingBox_info.html", color:"linear-gradient(#000,#3a3a3a)", title:"HOOKING BOX", desc:"2D×ワイヤーアクション"}
+        ];
 
-const hero = $(".hero");
-let bgFront = $(".bg1");
-let bgBack  = $(".bg2");
-
-const bgRight = $("#bgRight");
-const title = $("#title");
-const desc = $("#desc");
-let cards = $$(".card");
-
-// 共通：index取得
-const getWork = i => works[(index + i) % works.length];
-
-// 共通：カード設定
-function setCard(card, i){
-    const work = getWork(i);
-
-    const img = card.querySelector("img");
-    if(!img) return; // ← 念のため防御
-
-    img.src = work.img;
-    card.onclick = () => location.href = work.url;
-}
-
-// 初期化
-function init(){
-    cards.forEach((card, i) => setCard(card, i));
-
-    [bgFront, bgBack].forEach(bg=>{
-        bg.style.backgroundImage = `url(${works[index].img})`;
-    });
-
-    updateText();
-    startZoom(bgFront);
-
-    cards.forEach((c,i)=>{
-        gsap.set(c,{
-            x: POS[i],
-            scale: [1.6,0.9,0.7][i],
-            opacity: [1,0.7,0.4][i]
-        });
-    });
-
-    applyDepthUI();
-    addCenterHover();
-}
-
-// テキスト
-function updateText(){
-    const w = works[index];
-
-    gsap.to([title, desc], {
-        opacity: 0, y: 10, duration: 0.3,
-        onComplete: ()=>{
-            title.textContent = w.title;
-            desc.textContent = w.desc;
-            bgRight.style.background = w.color;
-
-            gsap.fromTo([title, desc],
-                {opacity:0,y:-10},
-                {opacity:1,y:0,duration:0.5}
-            );
-        }
-    });
-}
-
-// 背景ズーム
-function startZoom(target){
-    gsap.fromTo(target,{scale:1.3},{
-        scale:1,duration:INTERVAL,ease:"none",
-        onComplete:()=>startZoom(target)
-    });
-}
-
-// 背景切替
-function changeBackground(img){
-    bgBack.style.backgroundImage = `url(${img})`;
-    startZoom(bgBack);
-
-    gsap.to(bgBack,{opacity:1,duration:1});
-    gsap.to(bgFront,{opacity:0,duration:1});
-
-    [bgFront,bgBack] = [bgBack,bgFront];
-}
-
-// スライド
-function slide(){
-    if(isAnimating) return;
-    isAnimating = true;
-
-    index = (index + 1) % works.length;
-
-    changeBackground(works[index].img);
-    updateText();
-
-    const [main, sub1, sub2] = cards;
-
-    const newCard = document.createElement("div");
-    newCard.className = "card";
-    newCard.innerHTML = "<img>";
-    setCard(newCard, 2);
-    hero.appendChild(newCard);
-
-    gsap.set(newCard,{
-        x: window.innerWidth/2 + 500,
-        scale:0.6, opacity:0
-    });
-
-    const tl = gsap.timeline({
-        onComplete: ()=>{
-            main.remove();
-            cards = [sub1, sub2, newCard];
-
-            applyDepthUI();
-            addCenterHover();
-
-            isAnimating = false;
-        }
-    });
-
-    [main, sub1, sub2, newCard].forEach((c,i)=>{
-        tl.to(c,{
-            x: [-600, POS[0], POS[1], POS[2]][i],
-            scale: [0.8,1.6,0.9,0.7][i],
-            opacity: [0,1,0.7,0.4][i],
-            duration:0.9,
-            ease:easeType
-        },0);
-    });
-}
-
-// 奥行き
-function applyDepthUI(){
-    const configs = [
-        [1,0],[0.8,1],[0.5,2]
-    ];
-
-    cards.forEach((card,i)=>{
-        const [b, blur] = configs[i];
-        gsap.to(card.querySelector("img"),{
-            filter:`brightness(${b}) blur(${blur}px)`,
-            duration:0.5
-        });
-    });
-}
-
-// ホバー
-function addCenterHover(){
-    cards.forEach(c=>{
-        c.onmouseenter = c.onmouseleave = null;
-    });
-
-    const center = cards[0];
-    const img = center.querySelector("img");
-
-    center.onmouseenter = ()=>{
-        gsap.to(center,{scale:1.7,y:-10,duration:0.3});
-        gsap.to(img,{filter:"brightness(1.15)",duration:0.3});
-    };
-
-    center.onmouseleave = ()=>{
-        gsap.to(center,{scale:1.6,y:0,duration:0.3});
-        gsap.to(img,{filter:"brightness(1)",duration:0.3});
-    };
-}
-
-// スキル
-function animateSkills(){
-    $$(".fill").forEach(bar=>{
-        gsap.to(bar,{
-            width: bar.dataset.level + "%",
-            duration:1.5
-        });
-    });
-}
-
-new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting){
-        animateSkills();
+        this.el = {
+            hero: document.querySelector(".hero"),
+            bgFront: document.querySelector(".bg1"),
+            bgBack: document.querySelector(".bg2"),
+            bgRight: document.querySelector("#bgRight"),
+            title: document.querySelector("#title"),
+            desc: document.querySelector("#desc"),
+            cards: Array.from(document.querySelectorAll(".card"))
+        };
     }
-}).observe(document.querySelector("section:nth-of-type(2)"));
 
-// 実行
-init();
-setInterval(slide, INTERVAL * 1000);
+    init() {
+        this.setupCards();
+        this.setInitialCards();
+        this.setupBackground();
+        this.updateText();
+        this.startZoom(this.el.bgFront);
+        this.applyDepth();
+        this.bindVideo();
+        this.bindScrollAnimations();
+        this.startAutoSlide();
+    }
+
+    getWork(i) {
+        return this.works[(this.index + i) % this.works.length];
+    }
+
+    setupCards() {
+        this.el.cards.forEach((card, i) => {
+            const work = this.getWork(i);
+            const img = card.querySelector("img");
+
+            img.src = work.img;
+            card.onclick = () => this.onCardClick(card, work);
+        });
+    }
+
+    onCardClick(card, work) {
+        gsap.to(card, {
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.2,
+            onComplete: () => location.href = work.url
+        });
+    }
+
+    setInitialCards() {
+        this.el.cards.forEach((card, i) => {
+            gsap.set(card, {
+                x: this.POS[i],
+                y: 0,
+                scale: [1.6, 0.9, 0.7][i],
+                opacity: [1, 0.7, 0.4][i],
+                zIndex: 10 - i
+            });
+        });
+    }
+
+    setupBackground() {
+        const w = this.works[this.index];
+        this.el.bgFront.style.backgroundImage = `url(${w.img})`;
+        this.el.bgBack.style.backgroundImage = `url(${w.img})`;
+    }
+
+    updateText() {
+        const w = this.works[this.index];
+
+        gsap.to([this.el.title, this.el.desc], {
+            opacity: 0,
+            y: 10,
+            duration: 0.2,
+            onComplete: () => {
+                this.el.title.textContent = w.title;
+                this.el.desc.textContent = w.desc;
+                this.el.bgRight.style.background = w.color;
+
+                gsap.fromTo(
+                    [this.el.title, this.el.desc],
+                    { opacity: 0, y: -10 },
+                    { opacity: 1, y: 0, duration: 0.4 }
+                );
+            }
+        });
+    }
+
+    changeBackground() {
+        const w = this.works[this.index];
+
+        this.el.bgBack.style.backgroundImage = `url(${w.img})`;
+
+        gsap.to(this.el.bgBack, { opacity: 1, duration: 1 });
+        gsap.to(this.el.bgFront, { opacity: 0, duration: 1 });
+
+        [this.el.bgFront, this.el.bgBack] = [this.el.bgBack, this.el.bgFront];
+
+        this.startZoom(this.el.bgFront);
+    }
+
+    slide() {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
+        this.index = (this.index + 1) % this.works.length;
+
+        this.changeBackground();
+        this.updateText();
+
+        const [main, sub1, sub2] = this.el.cards;
+
+        const newCard = this.createCard();
+        this.el.hero.appendChild(newCard);
+
+        gsap.set(newCard, {
+            x: this.POS[2],
+            y: 0,
+            scale: 0.6,
+            opacity: 0
+        });
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                main.remove();
+
+                this.el.cards = [sub1, sub2, newCard];
+
+                this.applyDepth();
+                this.isAnimating = false;
+            }
+        });
+
+        const targets = [main, sub1, sub2, newCard];
+
+        targets.forEach((c, i) => {
+            tl.to(c, {
+                x: [-600, this.POS[0], this.POS[1], this.POS[2]][i],
+                scale: [0.8, 1.6, 0.9, 0.7][i],
+                opacity: [0, 1, 0.7, 0.4][i],
+                duration: 0.8,
+                ease: this.easeType
+            }, 0);
+        });
+    }
+
+    createCard() {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = "<img>";
+
+        const work = this.getWork(2);
+        const img = card.querySelector("img");
+        img.src = work.img;
+
+        card.onclick = () => this.onCardClick(card, work);
+
+        return card;
+    }
+
+    applyDepth() {
+        const config = [[1,0],[0.8,1],[0.5,2]];
+
+        this.el.cards.forEach((card, i) => {
+            const img = card.querySelector("img");
+            const [b, blur] = config[i];
+
+            gsap.set(img, {
+                filter: `brightness(${b}) blur(${blur}px)`
+            });
+        });
+    }
+
+    bindVideo() {
+        document.querySelectorAll(".work-card").forEach(card => {
+            const video = card.querySelector("video");
+
+            if (!video) return;
+
+            card.addEventListener("mouseenter", () => {
+                video.currentTime = 0;
+                video.play();
+            });
+
+            card.addEventListener("mouseleave", () => {
+                video.pause();
+            });
+        });
+    }
+
+    bindScrollAnimations() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray("section p, section li").forEach(el => {
+            gsap.from(el, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%"
+                }
+            });
+        });
+
+        gsap.utils.toArray("section h2").forEach(el => {
+            gsap.from(el, {
+                opacity: 0,
+                x: -20,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%"
+                }
+            });
+        });
+
+        gsap.utils.toArray(".fill").forEach(bar => {
+            gsap.to(bar, {
+                width: bar.dataset.level + "%",
+                duration: 1.2,
+                scrollTrigger: {
+                    trigger: bar,
+                    start: "top 85%"
+                }
+            });
+        });
+    }
+
+    startZoom(target) {
+        gsap.fromTo(target, { scale: 1.3 }, {
+            scale: 1,
+            duration: this.INTERVAL / 1000,
+            ease: "none",
+            onComplete: () => this.startZoom(target)
+        });
+    }
+
+    startAutoSlide() {
+        setInterval(() => this.slide(), this.INTERVAL);
+    }
+}
+
+const app = new PortfolioSlider();
+
+window.addEventListener("load", () => {
+    app.init();
+    ScrollTrigger.refresh();
+});
+
 </script>
 
 </body>
