@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WORKS - SAVE DATA</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script src="main.js" defer></script>
+
+<style>
+/* =========================
+SAVE DATA STYLE WORKS
+========================= */
+
+.save-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* セーブスロット */
+.save-slot {
+    background: #141820;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.save-slot:hover {
+    transform: translateY(-6px);
+    border-color: rgba(76,201,240,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* ヘッダー部分（ファイル名UI） */
+.slot-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 14px;
+    font-size: 13px;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: #a8b0bd;
+}
+
+/* メイン情報 */
+.slot-body {
+    padding: 14px;
+}
+
+.slot-body p {
+    font-size: 13px;
+    color: #eaeaea;
+    opacity: 0.9;
+    margin-bottom: 6px;
+}
+
+/* タイトル強調 */
+.save-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #4cc9f0;
+}
+
+/* 選択UI感 */
+.save-slot::after {
+    content: "▶ LOAD";
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 12px;
+    color: #4cc9f0;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 0.25s;
+}
+
+.save-slot:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ラベル */
+.tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: rgba(76,201,240,0.1);
+    border: 1px solid rgba(76,201,240,0.3);
+    color: #4cc9f0;
+    margin-bottom: 8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+HEADER
+========================= -->
+<header data-fade>
+<div class="nav">
+    <div class="logo">HARUTA PORTFOLIO</div>
+
+    <ul>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="works.html">WORKS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="skills.html">SKILLS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+</div>
+</header>
+
+<!-- =========================
+WORKS SAVE DATA UI
+========================= -->
+<section>
+<div class="container">
+
+<h2 data-fade>SAVE DATA / WORKS</h2>
+
+<div class="save-grid">
+
+    <!-- SLOT 01 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-header">
+            <span>FILE 01</span>
+            <span>Click</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">Click Hero</div>
+            <div class="tag">Unity / Click Game</div>
+
+            <p>クリック×放置ゲーム</p>
+            <p>UI設計 / ゲームループ / 演出設計</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 02 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-header">
+            <span>FILE 02</span>
+            <span>3D ACT</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">Flip Maze</div>
+            <div class="tag">3D Action</div>
+
+            <p>3Dアクションゲーム</p>
+            <p>ギミック設計 / カメラ制御</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 03 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-header">
+            <span>FILE 03</span>
+            <span>TIME ACT</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">Return Record</div>
+            <div class="tag">Time System</div>
+
+            <p>時間操作アクション</p>
+            <p>状態管理 / リワインド実装</p>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+</section>
+
+</body>
+</html>
