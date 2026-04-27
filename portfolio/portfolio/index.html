@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ポートフォリオ</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 背景 */
+.hero-bg-left {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.3);
+    filter: blur(8px) brightness(0.6);
+    pointer-events: none;
+}
+
+.hero-bg-right {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    z-index: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+/* カード */
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:320px;
+    height:180px;
+    z-index: 10;
+    border-radius:16px;
+    overflow:hidden;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.card:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* テキスト */
+.hero-text {
+    position: absolute;
+    left: 60px;
+    bottom: 80px;
+    color: white;
+}
+
+.hero-text h1 {
+    font-size: 42px;
+    margin: 0;
+}
+
+.hero-text p {
+    opacity: 0.8;
+}
+
+.bg1 { opacity: 1; }
+.bg2 { opacity: 0; }
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+    <div class="hero-bg-left bg1"></div>
+    <div class="hero-bg-left bg2"></div>
+    <div class="hero-bg-right" id="bgRight"></div>
+
+    <div class="card"><img></div>
+    <div class="card"><img></div>
+    <div class="card"><img></div>
+
+    <div class="hero-text">
+        <h1 id="title"></h1>
+        <p id="desc"></p>
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+const INTERVAL = 3;
+const POS = [0, 450, 750];
+const easeType = "power3.inOut";
+
+let index = 0;
+let isAnimating = false;
+
+const hero = document.querySelector(".hero");
+let bgFront = document.querySelector(".bg1");
+let bgBack  = document.querySelector(".bg2");
+
+const bgRight = document.getElementById("bgRight");
+const title = document.getElementById("title");
+const desc = document.getElementById("desc");
+let cards = [...document.querySelectorAll(".card")];
+
+const works = [
+    { img:"images/FlipMaze.png", url:"info/FlipMaze_info.html", color:"linear-gradient(#fff,#ddd)", title:"Flip Maze", desc:"3Dアクション×反転"},
+    { img:"images/PotionBerserker.png", url:"info/PotionBerserker_info.html", color:"linear-gradient(#2c2c2c,#6b6b6b)", title:"POTION BERSERKER", desc:"2Dアクション×組み合わせ"},
+    { img:"images/ReturnRecord.png", url:"info/ReturnRecord_info.html", color:"linear-gradient(#000,#2b2b2b)", title:"RETURN RECORD", desc:"2Dアクション×時間操作"},
+    { img:"images/ClickHero.png", url:"info/ClickHero_info.html", color:"linear-gradient(#e0e0e0,#bbb)", title:"Click Hero", desc:"クリック×放置"},
+    { img:"images/OverFish.png", url:"info/OverFish_info.html", color:"linear-gradient(#1e90ff,#00bcd4)", title:"Over Fish", desc:"2Dアクション×タワーディフェンス"},
+    { img:"images/DeepDungeon.png", url:"info/DeepDungeon_info.html", color:"linear-gradient(#2ecc71,#27ae60)", title:"Deep Dungeon", desc:"2Dアクション×ローグライク"},
+    { img:"images/Koutei.png", url:"info/Koutei_info.html", color:"linear-gradient(#00bcd4,#4dd0e1)", title:"コウテイぺんぎん", desc:"2Dアクション"},
+    { img:"images/Angel.png", url:"info/Angel_info.html", color:"linear-gradient(#fff,#f5f5f5)", title:"がんばれ！天使ちゃん", desc:"2Dミニゲーム×マルチエンド"},
+    { img:"images/HookingBox.png", url:"info/HookingBox_info.html", color:"linear-gradient(#000,#3a3a3a)", title:"HOOKING BOX", desc:"2D×ワイヤーアクション"}
+];
+
+/* 初期 */
+function init(){
+    cards.forEach((card,i)=>{
+        const work = works[(index+i)%works.length];
+
+        card.querySelector("img").src = works[(index+i)%works.length].img;
+
+        card.onclick = () => {
+            window.location.href = work.url;
+        };
+    });
+
+    bgFront.style.backgroundImage = `url(${works[index].img})`;
+    bgBack.style.backgroundImage  = `url(${works[index].img})`;
+
+    updateText();
+    startZoom(bgFront);
+
+    // 初期位置
+    gsap.set(cards[0], {x:POS[0], scale:1.6, opacity:1});
+    gsap.set(cards[1], {x:POS[1], scale:0.9, opacity:0.7});
+    gsap.set(cards[2], {x:POS[2], scale:0.7, opacity:0.4});
+
+    applyDepthUI();
+    addCenterHover();
+}
+
+/* テキスト */
+function updateText(){
+
+    const current = works[index];
+
+    // フェードアウト
+    gsap.to([title, desc], {
+        opacity: 0,
+        y: 10,
+        duration: 0.3,
+        ease: "power2.out",
+        onComplete: () => {
+
+            // テキスト差し替え
+            title.textContent = current.title;
+            desc.textContent = current.desc;
+            bgRight.style.background = current.color;
+
+            // フェードイン
+            gsap.fromTo([title, desc],
+                {
+                    opacity: 0,
+                    y: -10
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out"
+                }
+            );
+        }
+    });
+}
+
+/* ズーム */
+function startZoom(target){
+    gsap.fromTo(target,
+        {scale:1.3},
+        {
+            scale:1,
+            duration:INTERVAL,
+            ease:"none",
+            onComplete: ()=> startZoom(target)
+        }
+    );
+}
+
+/* クロスフェード */
+function changeBackground(img){
+    bgBack.style.backgroundImage = `url(${img})`;
+    startZoom(bgBack);
+
+    gsap.to(bgBack, {opacity:1, duration:1});
+    gsap.to(bgFront, {opacity:0, duration:1});
+
+    [bgFront, bgBack] = [bgBack, bgFront];
+}
+
+/* スライド */
+function slide(){
+
+    if(isAnimating) return;
+    isAnimating = true;
+
+    const [main, sub1, sub2] = cards;
+    index = (index+1)%works.length;
+
+    changeBackground(works[index].img);
+    updateText();
+
+    // 新カード
+    const newCard = document.createElement("div");
+    newCard.className = "card";
+    newCard.innerHTML = "<img>";
+    newCard.querySelector("img").src = works[(index+2)%works.length].img;
+    const newWork = works[(index+2)%works.length];
+    newCard.onclick = () => {
+        window.location.href = newWork.url;
+    };
+    hero.appendChild(newCard);
+
+    // ★ 画面外右から出す
+    gsap.set(newCard, {
+        x: window.innerWidth / 2 + 500,
+        scale: 0.6,
+        opacity: 0
+    });
+
+    function updateCardLinks(){
+        cards.forEach((card,i)=>{
+            const work = works[(index+i)%works.length];
+
+            card.onclick = () => {
+                window.location.href = work.url;
+            };
+        });
+    }
+
+    const tl = gsap.timeline({
+        onComplete: ()=>{
+            main.remove();
+            cards.shift();
+            cards.push(newCard);
+
+            applyDepthUI();
+            addCenterHover();
+            updateCardLinks();
+
+            isAnimating = false;
+        }
+    });
+
+    tl.to(main, {
+        x: -600,
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.9,
+        ease: easeType
+    },0);
+
+    tl.to(sub1, {
+        x: POS[0],
+        scale: 1.6,
+        opacity: 1,
+        duration: 0.9,
+        ease: easeType
+    },0);
+
+    tl.to(sub2, {
+        x: POS[1],
+        scale: 0.9,
+        opacity: 0.7,
+        duration: 0.9,
+        ease: easeType
+    },0);
+
+    tl.to(newCard, {
+        x: POS[2],
+        scale: 0.7,
+        opacity: 0.4,
+        duration: 0.9,
+        ease: easeType
+    },0);
+}
+
+/* 奥行き */
+function applyDepthUI(){
+    const configs = [
+        {b:1, blur:0},
+        {b:0.8, blur:1},
+        {b:0.5, blur:2}
+    ];
+
+    cards.forEach((card,i)=>{
+        gsap.to(card.querySelector("img"), {
+            filter:`brightness(${configs[i].b}) blur(${configs[i].blur}px)`,
+            duration:0.5
+        });
+    });
+}
+
+/* ホバー（中央のみ）*/
+function addCenterHover(){
+
+    cards.forEach(c=>{
+        c.onmouseenter = null;
+        c.onmouseleave = null;
+    });
+
+    const center = cards[0];
+    const img = center.querySelector("img");
+
+    center.onmouseenter = ()=>{
+        gsap.to(center,{scale:1.7,y:-10,duration:0.3});
+        gsap.to(img,{filter:"brightness(1.15)",duration:0.3});
+    };
+
+    center.onmouseleave = ()=>{
+        gsap.to(center,{scale:1.6,y:0,duration:0.3});
+        gsap.to(img,{filter:"brightness(1)",duration:0.3});
+    };
+}
+
+/* 実行 */
+init();
+setInterval(slide, INTERVAL * 1000);
+
+</script>
+
+</body>
+</html>
