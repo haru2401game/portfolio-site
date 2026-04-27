@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SKILLS | ポートフォリオ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #0f0f10;
+    --panel: #161616;
+    --text: #ffffff;
+    --sub: rgba(255,255,255,0.7);
+
+    --accent: #00bcd4;
+    --accent2: #1e90ff;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #0f0f10);
+    color: white;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+}
+
+/* ナビ */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    opacity: 1;
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+header h1 {
+    font-size: 44px;
+    margin: 0;
+}
+
+header p {
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* セクション */
+section {
+    padding: 100px 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* カード */
+.skill-card {
+    background: var(--panel);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* タイトル */
+.skill-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skill-title h3 {
+    margin: 0;
+}
+
+/* レベル */
+.level {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+}
+
+/* 説明 */
+.skill-desc {
+    margin-top: 10px;
+    opacity: 0.85;
+    line-height: 1.7;
+}
+
+/* タグ */
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 4px 8px;
+    margin: 3px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+}
+
+/* ボタン */
+button, .btn {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover, .btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* グリッド */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 見出し */
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ナビ -->
+<div class="nav">
+    <a href="index.html">← TOP</a>
+    <a href="works.html">WORKS</a>
+</div>
+
+<!-- ヘッダー -->
+<header>
+    <h1>SKILLS</h1>
+    <p>技術スタックと実装経験</p>
+</header>
+
+<div class="container">
+
+    <!-- Unity -->
+    <div class="section">
+        <h2>Unity / C#</h2>
+
+        <div class="grid">
+
+            <div class="skill-card">
+                <div class="skill-title">
+                    <h3>ゲームシステム設計</h3>
+                    <span class="level">実務レベル</span>
+                </div>
+
+                <p class="skill-desc">
+                    ゲームループ・状態管理・UI遷移など、
+                    ゲーム全体構造の設計を担当。
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Click Hero</span>
+                    <span class="tag">Over Fish</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-title">
+                    <h3>UI / UX設計</h3>
+                    <span class="level">実務レベル</span>
+                </div>
+
+                <p class="skill-desc">
+                    プレイヤーの操作感を意識したUI設計と演出実装。
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Click Hero</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- C++ -->
+    <div class="section">
+        <h2>C++（DxLib / DirectXTK）</h2>
+
+        <div class="grid">
+
+            <div class="skill-card">
+                <div class="skill-title">
+                    <h3>2Dアクション設計</h3>
+                    <span class="level">中級</span>
+                </div>
+
+                <p class="skill-desc">
+                    当たり判定・シーン管理・アニメーション制御を実装。
+                </p>
+
+                <div class="tags">
+                    <span class="tag">Return Record</span>
+                    <span class="tag">Deep Dungeon</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-title">
+                    <h3>3D描画基礎</h3>
+                    <span class="level">中級</span>
+                </div>
+
+                <p class="skill-desc">
+                    テクスチャ描画・カメラ制御・DirectXTKを用いた描画処理。
+                </p>
+
+                <div class="tags">
+                    <span class="tag">DirectXTK</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- その他 -->
+    <div class="section">
+        <h2>Other Skills</h2>
+
+        <div class="grid">
+
+            <div class="skill-card">
+                <div class="skill-title">
+                    <h3>Git / GitHub</h3>
+                    <span class="level">初級</span>
+                </div>
+
+                <p class="skill-desc">
+                    個人開発でのバージョン管理経験あり。
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-title">
+                    <h3>HTML / CSS</h3>
+                    <span class="level">初級</span>
+                </div>
+
+                <p class="skill-desc">
+                    ポートフォリオサイト制作に使用。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

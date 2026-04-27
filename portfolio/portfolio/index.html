@@ -2,374 +2,91 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>ポートフォリオ</title>
+<title>ポートフォリオ | TOP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
+
+:root {
+    --bg: #0f0f10;
+    --panel: #161616;
+    --text: #ffffff;
+    --sub: rgba(255,255,255,0.7);
+
+    --accent: #00bcd4;
+    --accent2: #1e90ff;
+}
+
 body {
     margin: 0;
     font-family: "Inter", "Noto Sans JP", sans-serif;
-    background: #0f0f10;
+    background: radial-gradient(circle at top, #1a1a1a, #0f0f10);
     color: white;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
 }
 
+/* ===== HERO ===== */
 .hero {
-    position: relative;
     height: 100vh;
-    overflow: hidden;
-}
-
-/* 背景 */
-.hero-bg-left {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    transform: scale(1.3);
-    filter: blur(8px) brightness(0.6);
-    pointer-events: none;
-}
-
-.hero-bg-right {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    z-index: 0;
-    right: 0;
-    pointer-events: none;
-}
-
-.hero-profile {
-    position: absolute;
-    left: 40px;
-    bottom: 40px;
-    z-index: 20;
-}
-
-.hero-profile h1 {
-    font-size: 40px;
-    font-weight: 700;
-}
-
-.hero-profile p {
-    font-size: 14px;
-    opacity: 0.7;
-    margin-top: 6px;
-}
-
-/* カード */
-.card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 340px;
-    height: 200px;
-    z-index: 10;
-
-    transform: translate(-50%, -50%);
-    transform-origin: center;
-
-    border-radius: 20px;
-    overflow: hidden;
-
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-    border: 1px solid rgba(255,255,255,0.08);
-
-    backdrop-filter: blur(10px);
-
-    cursor: auto;
-}
-
-.card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.card:active {
-    transform: translate(-50%, -50%) scale(0.95);
-}
-
-.card:hover {
-    transform: translate(-50%, -50%) scale(1.03);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-}
-
-.card-label {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 12px;
-    background: rgba(0,0,0,0.5);
-    padding: 4px 8px;
-    border-radius: 6px;
-}
-
-.work-info {
-    position: absolute;
-    left: 50%;
-    bottom: 20px;
-    transform: translateX(-50%);
-    z-index: 5;
-
-    text-align: center;
-
-    background: rgba(20, 20, 20, 0.55);
-    backdrop-filter: blur(14px);
-
-    padding: 14px 28px;
-    border-radius: 16px;
-
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-
-    pointer-events: none;
-}
-
-.work-info h2 {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 1px;
-
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-.work-info p {
-    font-size: 13px;
-    opacity: 0.75;
-}
-
-.work-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-.work-card .media {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 12px;
-    background: #000;
-}
-
-.work-card .media img,
-.work-card .media video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #000;
-    display: block;
-}
-
-.work-card video {
-    opacity: 0;
-    transform: scale(1.05);
-    transition: 0.3s ease;
-    pointer-events: none;
-}
-
-.work-card:hover video {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* テキスト */
-.hero-text {
-    position: absolute;
-    left: 60px;
-    bottom: 80px;
-    color: white;
-}
-
-.hero-text h1 {
-    font-size: 42px;
-    margin: 0;
-}
-
-.hero-text p {
-    opacity: 0.8;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 80%);
-    z-index: 1;
-}
-
-.bg1 { opacity: 1; }
-.bg2 { opacity: 0; }
-
-.profile-hero {
-    height: 60vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #1e90ff, #00bcd4);
-    color: white;
-    text-align: center;
+    justify-content: center;
+    position: relative;
 }
 
-.profile-hero h1 {
+.hero-inner {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero h1 {
     font-size: 48px;
     margin: 0;
 }
 
-.profile-hero p {
-    opacity: 0.9;
-}
-
-.profile-box {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.profile-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: 0.3s;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.profile-icon:hover {
-    transform: scale(1.05);
-}
-
-.profile-text {
-    flex: 1;
-}
-
-.profile-name {
-    margin: 0;
-    font-size: 26px;
-    font-weight: bold;
-}
-
-.profile-role {
-    margin: 4px 0 16px;
-    color: #1e90ff;
-    font-weight: bold;
-}
-
-.profile-meta {
-    font-size: 13px;
-    color: #777;
-    margin-bottom: 10px;
-}
-
-.skill:hover .fill {
-    filter: brightness(1.2);
-}
-
-.bar {
-    width: 100%;
-    height: 12px;
-    background: #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #1e90ff, #00bcd4);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
-}
-
-.skill-card {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    margin-bottom: 25px;
-
-    background: white;
-    border-radius: 12px;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: 0.3s;
-}
-
-.skill-card:hover {
-    transform: translateY(-5px);
-}
-
-.skill-icon {
-    width: 50px;
-    height: 50px;
-}
-
-.skill-info {
-    flex: 1;
-}
-
-.skill-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.skill-top h3 {
-    margin: 0;
-}
-
-.level {
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    background: linear-gradient(90deg, #1e90ff, #00bcd4);
-    color: white;
-    letter-spacing: 0.5px;
-}
-
-/* レベル色 */
-.level.advanced {
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
-    transform: scale(1.05);
-}
-
-.level.intermediate {
+.hero p {
     opacity: 0.8;
+    margin-top: 10px;
 }
 
-.level.beginner {
-    opacity: 0.6;
+/* 主力作品 */
+.feature-work {
+    margin-top: 30px;
+    display: inline-block;
+    text-align: left;
 }
 
-.skill-desc {
-    font-size: 14px;
-    color: #555;
-    margin: 8px 0 10px;
+.feature-work img {
+    width: 420px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    transition: 0.3s;
 }
 
+.feature-work img:hover {
+    transform: scale(1.03);
+}
+
+/* ボタン */
+button, .btn {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover, .btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* ===== SECTION ===== */
 section {
-    padding: 80px 20px;
-    transform: translateZ(0);
-    will-change: transform, opacity;
-}
-
-section:nth-of-type(even) {
-    background: #f6f7fb;
-    color: #111;
-}
-
-section:nth-of-type(even) h2,
-section:nth-of-type(even) p,
-section:nth-of-type(even) li {
-    color: #111;
+    padding: 100px 20px;
 }
 
 .container {
@@ -377,575 +94,97 @@ section:nth-of-type(even) li {
     margin: 0 auto;
 }
 
+/* ナビ */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    opacity: 1;
+}
+
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+
 h2 {
     font-size: 28px;
     margin-bottom: 20px;
+    position: relative;
 }
 
-p {
-    line-height: 1.8;
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
 }
 
 </style>
 </head>
 
-<!-- フォント導入 -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-
 <body>
 
-<!-- トップ作品スライド -->
+<!-- ナビ -->
+<div class="nav">
+    <a href="works.html">WORKS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="skills.html">SKILLS</a>
+    <a href="contact.html">CONTACT</a>
+</div>
+
+<!-- HERO -->
 <div class="hero">
 
-    <div class="hero-bg-left bg1"></div>
-    <div class="hero-bg-left bg2"></div>
-    <div class="hero-bg-right" id="bgRight"></div>
-
-    <div class="card"><img></div>
-    <div class="card"><img></div>
-    <div class="card"><img></div>
-
-    <!-- 自分情報 -->
-    <div class="hero-profile">
+    <div class="hero-inner">
         <h1>長屋 晴太</h1>
-        <p>ゲームプログラマー志望 / Unity(C#),C++(Dxlib&DirectXTK)</p>
-    </div>
+        <p>ゲームプログラマー志望 / Unity・C++</p>
 
-    <!-- 作品情報 -->
-    <div class="work-info">
-        <h2 id="title"></h2>
-        <p id="desc"></p>
+        <!-- 主力作品 -->
+        <div class="feature-work">
+            <img src="images/ClickHero.png" alt="Click Hero">
+            <p>Click Hero｜クリック×放置ゲーム（Unity）</p>
+        </div>
+
+        <br>
+        <a class="btn" href="works.html">作品を見る</a>
     </div>
 
 </div>
 
+<!-- ABOUT（簡易） -->
 <section>
     <div class="container">
-
-    <h2>PROFILE</h2>
-
-    <p style="font-size:18px; font-weight:bold;">
-    Unityを用いたUI設計を得意とするゲームプログラマー志望です。
-    </p>
-
-    <ul>
-        <li>個人でゲーム設計〜実装まで一貫開発可能</li>
-        <li>ステージ生成・ゲームループ・UI設計を実装経験あり</li>
-        <li>Unity / C++（DxLib / DirectXTK）で複数作品制作</li>
-    </ul>
-
-    </div>
-</section>
-
-<!-- アピール作品 -->
-<section>
-    <div class="container">
-        <h2>代表作品</h2>
-
-        <div class="work-card">
-
-            <div class="media">
-                <img src="images/ClickHero.png">
-                <video src="videos/ClickHero.mp4" muted loop></video>
-            </div>
-
-            <h3>Click Hero</h3>
-            <p>クリック×放置ゲーム / Unity</p>
-
-            <h4>■ Purpose(目的)</h4>
-            <p>短時間で気持ちよさを得られるゲーム設計</p>
-
-            <h4>■ My Role(担当)</h4>
-            <p>企画 / 実装 / UI設計 / 演出</p>
-
-            <h4>■ Tech(技術)</h4>
-            <ul>
-                <li>クリックフィードバック演出</li>
-                <li>数値バランス設計</li>
-            </ul>
-
-            <h4>■ Challenge(課題)</h4>
-            <p>プレイヤーの離脱を防ぐテンポ調整</p>
-
-            <a href="info/ClickHero_info.html">詳細を見る →</a>
-        </div>
-    </div>
-</section>
-
-<!-- 自己紹介 -->
-<section>
-    <div class="container">
-        <h2>プロフィール</h2>
-
-        <div class="profile-box">
-            <img src="images/profile.png" class="profile-icon">
-
-            <div class="profile-text">
-
-                <h3 class="profile-name">長屋 晴太</h3>
-                <p class="profile-role">ゲームプログラマー志望</p>
-                <p class="profile-meta">愛知県在住 / 専門学校生 / 2028年卒予定</p>
-
-                <p>
-                    専門学校でゲームプログラミングを学びながら、<br>
-                    Unity / C++を用いた2D・3Dゲームの個人開発を行っています。
-                </p>
-
-                <p>
-                    これまでに複数の作品を制作し、<br>
-                    「世界反転」や「時間操作」などのゲームシステムを実装してきました。
-                </p>
-
-                <p>
-                    また、ゲーム制作ブログを1年以上継続し、100記事以上を投稿するなど、<br>
-                    技術の言語化と継続的な成長にも取り組んでいます。
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- スキル -->
-<section>
-    <div class="container">
-        <h2>スキル</h2>
-
-        <!-- Unity -->
-        <div class="skill-card">
-            <img src="images/icons/unity.png" class="skill-icon">
-
-            <div class="skill-info">
-                <div class="skill-top">
-                    <h3>Unity / C#</h3>
-                    <span class="level advanced">実務レベル</span>
-                </div>
-
-                <p class="skill-desc">
-                    3Dアクションゲーム制作、UI実装、ステージ生成、タイムアタック機能などを実装。
-                </p>
-
-                <div class="bar">
-                    <div class="fill" data-level="70"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- DxLib -->
-        <div class="skill-card">
-            <img src="images/icons/Dxlib.png" class="skill-icon">
-
-            <div class="skill-info">
-                <div class="skill-top">
-                    <h3>C++ / DxLib</h3>
-                    <span class="level intermediate">中級</span>
-                </div>
-
-                <p class="skill-desc">
-                    2Dアクションゲームを複数制作。シーン管理・当たり判定・アニメーションを実装。
-                </p>
-
-                <div class="bar">
-                    <div class="fill" data-level="60"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- DirectXTK -->
-        <div class="skill-card">
-            <img src="images/icons/DirectXTK.png" class="skill-icon">
-
-            <div class="skill-info">
-                <div class="skill-top">
-                    <h3>C++ / DirectXTK</h3>
-                    <span class="level intermediate">中級</span>
-                </div>
-
-                <p class="skill-desc">
-                    テクスチャ描画、カメラ制御、基本的な3D描画処理を実装。
-                </p>
-
-                <div class="bar">
-                    <div class="fill" data-level="45"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GitHub -->
-        <div class="skill-card">
-            <img src="images/icons/Github.png" class="skill-icon">
-
-            <div class="skill-info">
-                <div class="skill-top">
-                    <h3>Git / GitHub</h3>
-                    <span class="level intermediate">初級</span>
-                </div>
-
-                <p class="skill-desc">
-                    個人開発用リポジトリ使用経験あり。
-                </p>
-
-                <div class="bar">
-                    <div class="fill" data-level="40"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- HTML -->
-        <div class="skill-card">
-            <img src="images/icons/HTML.png" class="skill-icon">
-
-            <div class="skill-info">
-                <div class="skill-top">
-                    <h3>HTML / CSS</h3>
-                    <span class="level beginner">初級</span>
-                </div>
-
-                <p class="skill-desc">
-                    ポートフォリオサイトのデザイン・レイアウト・アニメーションを実装。
-                </p>
-
-                <div class="bar">
-                    <div class="fill" data-level="10"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 強み -->
-<section>
-    <div class="container">
-        <h2>強み</h2>
-
-        <h3>継続力</h3>
+        <h2>ABOUT</h2>
         <p>
-            ゲーム制作ブログを1年以上継続し、100記事以上を投稿しました。  
-            技術を言語化することで理解を深め、実装力の向上につなげています。
-        </p>
-
-        <h3>行動力</h3>
-        <p>
-            入学1ヶ月でチーム制作に参加し、コンテストに応募しました。  
-            またゲームジャムにも参加し、短期間での開発経験を積んでいます。
+            Unity / C++を用いたゲーム制作を行っています。<br>
+            UI設計とゲームループ設計を得意としています。
         </p>
     </div>
 </section>
 
-<!-- 技術力 -->
-<section>
-<div class="container">
-
-    <h2>TECHNICAL FOCUS</h2>
-
-    <h3>■ ゲーム設計</h3>
-    <p>状態管理・ゲームループ・UI遷移設計</p>
-
-    <h3>■ UXを意識したプレイ体験</h3>
-    <p>遊びやすさ・気持ちよさを意識した作品制作</p>
-
-    <h3>■ 最適化意識</h3>
-    <p>Update依存を減らした設計・軽量化意識</p>
-
-</div>
-</section>
-
-<!-- 活動 -->
+<!-- SKILL（簡易） -->
 <section>
     <div class="container">
-        <h2>ACTIVITY</h2>
+        <h2>SKILLS</h2>
+        <p>
+            Unity / C# / C++ / DxLib / DirectXTK
+        </p>
 
-        <ul>
-            <li>ゲーム制作ブログ 100記事以上継続(1年以上)</li>
-            <li>ゲームジャム参加（短期開発経験）</li>
-            <li>チーム開発経験あり</li>
-        </ul>
+        <a class="btn" href="skills.html">詳しく見る</a>
     </div>
 </section>
-
-<!-- リンク -->
-<section>
-    <div class="container">
-        <h2>リンク</h2>
-
-        <a href="https://note.com/ha_03ru_01">ブログ</a><br>
-        <a href="https://github.com/haru2401game">GitHub</a>
-    </div>
-</section>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script>
-
-class PortfolioSlider {
-    constructor() {
-        this.index = 0;
-        this.isAnimating = false;
-
-        this.INTERVAL = 3000;
-        this.POS = [0, 450, 750];
-        this.easeType = "power3.inOut";
-
-        this.works = [
-            { img:"images/FlipMaze.png", url:"info/FlipMaze_info.html", color:"linear-gradient(#fff,#ddd)", title:"Flip Maze", desc:"3Dアクション×反転"},
-            { img:"images/PotionBerserker.png", url:"info/PotionBerserker_info.html", color:"linear-gradient(#2c2c2c,#6b6b6b)", title:"POTION BERSERKER", desc:"2Dアクション×組み合わせ"},
-            { img:"images/ReturnRecord.png", url:"info/ReturnRecord_info.html", color:"linear-gradient(#000,#2b2b2b)", title:"RETURN RECORD", desc:"2Dアクション×時間操作"},
-            { img:"images/ClickHero.png", url:"info/ClickHero_info.html", color:"linear-gradient(#e0e0e0,#bbb)", title:"Click Hero", desc:"クリック×放置"},
-            { img:"images/OverFish.png", url:"info/OverFish_info.html", color:"linear-gradient(#1e90ff,#00bcd4)", title:"Over Fish", desc:"2Dアクション×タワーディフェンス"},
-            { img:"images/DeepDungeon.png", url:"info/DeepDungeon_info.html", color:"linear-gradient(#2ecc71,#27ae60)", title:"Deep Dungeon", desc:"2Dアクション×ローグライク"},
-            { img:"images/Koutei.png", url:"info/Koutei_info.html", color:"linear-gradient(#00bcd4,#4dd0e1)", title:"コウテイぺんぎん", desc:"2Dアクション"},
-            { img:"images/Angel.png", url:"info/Angel_info.html", color:"linear-gradient(#fff,#f5f5f5)", title:"がんばれ！天使ちゃん", desc:"2Dミニゲーム×マルチエンド"},
-            { img:"images/HookingBox.png", url:"info/HookingBox_info.html", color:"linear-gradient(#000,#3a3a3a)", title:"HOOKING BOX", desc:"2D×ワイヤーアクション"}
-        ];
-
-        this.el = {
-            hero: document.querySelector(".hero"),
-            bgFront: document.querySelector(".bg1"),
-            bgBack: document.querySelector(".bg2"),
-            bgRight: document.querySelector("#bgRight"),
-            title: document.querySelector("#title"),
-            desc: document.querySelector("#desc"),
-            cards: Array.from(document.querySelectorAll(".card"))
-        };
-    }
-
-    init() {
-        this.setupCards();
-        this.setInitialCards();
-        this.setupBackground();
-        this.updateText();
-        this.startZoom(this.el.bgFront);
-        this.applyDepth();
-        this.bindVideo();
-        this.bindScrollAnimations();
-        this.startAutoSlide();
-    }
-
-    getWork(i) {
-        return this.works[(this.index + i) % this.works.length];
-    }
-
-    setupCards() {
-        this.el.cards.forEach((card, i) => {
-            const work = this.getWork(i);
-            const img = card.querySelector("img");
-
-            img.src = work.img;
-            card.onclick = () => this.onCardClick(card, work);
-        });
-    }
-
-    onCardClick(card, work) {
-        gsap.to(card, {
-            scale: 0.8,
-            opacity: 0,
-            duration: 0.2,
-            onComplete: () => location.href = work.url
-        });
-    }
-
-    setInitialCards() {
-        this.el.cards.forEach((card, i) => {
-            gsap.set(card, {
-                x: this.POS[i],
-                y: 0,
-                scale: [1.6, 0.9, 0.7][i],
-                opacity: [1, 0.7, 0.4][i],
-                zIndex: 10 - i
-            });
-        });
-    }
-
-    setupBackground() {
-        const w = this.works[this.index];
-        this.el.bgFront.style.backgroundImage = `url(${w.img})`;
-        this.el.bgBack.style.backgroundImage = `url(${w.img})`;
-    }
-
-    updateText() {
-        const w = this.works[this.index];
-
-        gsap.to([this.el.title, this.el.desc], {
-            opacity: 0,
-            y: 10,
-            duration: 0.2,
-            onComplete: () => {
-                this.el.title.textContent = w.title;
-                this.el.desc.textContent = w.desc;
-                this.el.bgRight.style.background = w.color;
-
-                gsap.fromTo(
-                    [this.el.title, this.el.desc],
-                    { opacity: 0, y: -10 },
-                    { opacity: 1, y: 0, duration: 0.4 }
-                );
-            }
-        });
-    }
-
-    changeBackground() {
-        const w = this.works[this.index];
-
-        this.el.bgBack.style.backgroundImage = `url(${w.img})`;
-
-        gsap.to(this.el.bgBack, { opacity: 1, duration: 1 });
-        gsap.to(this.el.bgFront, { opacity: 0, duration: 1 });
-
-        [this.el.bgFront, this.el.bgBack] = [this.el.bgBack, this.el.bgFront];
-
-        this.startZoom(this.el.bgFront);
-    }
-
-    slide() {
-        if (this.isAnimating) return;
-        this.isAnimating = true;
-
-        this.index = (this.index + 1) % this.works.length;
-
-        this.changeBackground();
-        this.updateText();
-
-        const [main, sub1, sub2] = this.el.cards;
-
-        const newCard = this.createCard();
-        this.el.hero.appendChild(newCard);
-
-        gsap.set(newCard, {
-            x: this.POS[2],
-            y: 0,
-            scale: 0.6,
-            opacity: 0
-        });
-
-        const tl = gsap.timeline({
-            onComplete: () => {
-                main.remove();
-
-                this.el.cards = [sub1, sub2, newCard];
-
-                this.applyDepth();
-                this.isAnimating = false;
-            }
-        });
-
-        const targets = [main, sub1, sub2, newCard];
-
-        targets.forEach((c, i) => {
-            tl.to(c, {
-                x: [-600, this.POS[0], this.POS[1], this.POS[2]][i],
-                scale: [0.8, 1.6, 0.9, 0.7][i],
-                opacity: [0, 1, 0.7, 0.4][i],
-                duration: 0.8,
-                ease: this.easeType
-            }, 0);
-        });
-    }
-
-    createCard() {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = "<img>";
-
-        const work = this.getWork(2);
-        const img = card.querySelector("img");
-        img.src = work.img;
-
-        card.onclick = () => this.onCardClick(card, work);
-
-        return card;
-    }
-
-    applyDepth() {
-        const config = [[1,0],[0.8,1],[0.5,2]];
-
-        this.el.cards.forEach((card, i) => {
-            const img = card.querySelector("img");
-            const [b, blur] = config[i];
-
-            gsap.set(img, {
-                filter: `brightness(${b}) blur(${blur}px)`
-            });
-        });
-    }
-
-    bindVideo() {
-        document.querySelectorAll(".work-card").forEach(card => {
-            const video = card.querySelector("video");
-
-            if (!video) return;
-
-            card.addEventListener("mouseenter", () => {
-                video.currentTime = 0;
-                video.play();
-            });
-
-            card.addEventListener("mouseleave", () => {
-                video.pause();
-            });
-        });
-    }
-
-    bindScrollAnimations() {
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.utils.toArray("section p, section li").forEach(el => {
-            gsap.from(el, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%"
-                }
-            });
-        });
-
-        gsap.utils.toArray("section h2").forEach(el => {
-            gsap.from(el, {
-                opacity: 0,
-                x: -20,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%"
-                }
-            });
-        });
-
-        gsap.utils.toArray(".fill").forEach(bar => {
-            gsap.to(bar, {
-                width: bar.dataset.level + "%",
-                duration: 1.2,
-                scrollTrigger: {
-                    trigger: bar,
-                    start: "top 85%"
-                }
-            });
-        });
-    }
-
-    startZoom(target) {
-        gsap.fromTo(target, { scale: 1.3 }, {
-            scale: 1,
-            duration: this.INTERVAL / 1000,
-            ease: "none",
-            onComplete: () => this.startZoom(target)
-        });
-    }
-
-    startAutoSlide() {
-        setInterval(() => this.slide(), this.INTERVAL);
-    }
-}
-
-const app = new PortfolioSlider();
-
-window.addEventListener("load", () => {
-    app.init();
-    ScrollTrigger.refresh();
-});
-
-</script>
 
 </body>
 </html>

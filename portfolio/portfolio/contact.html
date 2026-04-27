@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>CONTACT | ポートフォリオ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #0f0f10;
+    --panel: #161616;
+    --text: #ffffff;
+    --sub: rgba(255,255,255,0.7);
+
+    --accent: #00bcd4;
+    --accent2: #1e90ff;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #0f0f10);    color: white;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+}
+
+/* ナビ */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    opacity: 1;
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+header h1 {
+    font-size: 44px;
+    margin: 0;
+}
+
+header p {
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+/* コンテナ */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* カード */
+.card {
+    background: var(--panel);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* テキスト */
+p {
+    opacity: 0.85;
+    line-height: 1.7;
+}
+
+/* リンク */
+a {
+    color: #4dd0e1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* フォーム */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    background: #222;
+    color: white;
+}
+
+/* ボタン */
+button, .btn {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover, .btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* セクション */
+section {
+    padding: 100px 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ナビ -->
+<div class="nav">
+    <a href="index.html">← TOP</a>
+    <a href="works.html">WORKS</a>
+    <a href="skills.html">SKILLS</a>
+</div>
+
+<!-- ヘッダー -->
+<header>
+    <h1>CONTACT</h1>
+    <p>企業様・制作依頼・ご相談はこちらから</p>
+</header>
+
+<div class="container">
+
+    <!-- メッセージ -->
+    <div class="card">
+        <h2>■ メッセージ</h2>
+        <p>
+            ゲームプログラマーを志望しております。<br>
+            Unity / C++を用いたゲーム開発経験があります。<br><br>
+
+            お仕事・インターン・制作に関するご相談は<br>
+            お気軽にご連絡ください。
+        </p>
+    </div>
+
+    <!-- メール -->
+    <div class="card">
+        <h2>■ Email</h2>
+        <p>
+            <a href="mailto:example@gmail.com">example@gmail.com</a>
+        </p>
+    </div>
+
+    <!-- SNS -->
+    <div class="card">
+        <h2>■ SNS / GitHub</h2>
+        <p>
+            GitHub：<br>
+            <a href="https://github.com/yourname">https://github.com/yourname</a><br><br>
+
+            ブログ：<br>
+            <a href="https://note.com/yourname">https://note.com/yourname</a>
+        </p>
+    </div>
+
+    <!-- フォーム（強い） -->
+    <div class="card">
+        <h2>■ お問い合わせフォーム</h2>
+
+        <form>
+            <label>お名前</label>
+            <input type="text" placeholder="Your Name">
+
+            <label>メールアドレス</label>
+            <input type="email" placeholder="example@mail.com">
+
+            <label>内容</label>
+            <textarea rows="5" placeholder="ご連絡内容"></textarea>
+
+            <button type="submit">送信</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

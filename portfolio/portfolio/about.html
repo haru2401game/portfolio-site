@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ABOUT | ポートフォリオ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #0f0f10;
+    --panel: #161616;
+    --text: #ffffff;
+    --sub: rgba(255,255,255,0.7);
+
+    --accent: #00bcd4;
+    --accent2: #1e90ff;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, #0f0f10);
+    color: white;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+}
+
+/* ナビ */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    opacity: 1;
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+header h1 {
+    font-size: 44px;
+    margin: 0;
+}
+
+header p {
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+/* コンテンツ */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* カード */
+.card {
+    background: #161616;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* セクション */
+section {
+    padding: 100px 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* テキスト */
+p {
+    line-height: 1.8;
+    opacity: 0.85;
+}
+
+/* 強み */
+.strengths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .strengths {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ボタン */
+button, .btn {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover, .btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* バッジ */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    margin-right: 5px;
+}
+
+h1, h2, h3 {
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ナビ -->
+<div class="nav">
+    <a href="index.html">← TOP</a>
+    <a href="works.html">WORKS</a>
+</div>
+
+<!-- ヘッダー -->
+<header>
+    <h1>ABOUT</h1>
+    <p>ゲームプログラマー志望</p>
+</header>
+
+<div class="container">
+
+    <!-- ① 自己紹介 -->
+    <div class="card">
+        <h2>自己紹介</h2>
+        <p>
+            長屋晴太です。ゲームプログラマーを目指し、<br>
+            Unity / C++を用いたゲーム制作を行っています。
+        </p>
+        <p>
+            UI設計やゲームループ設計など、<br>
+            “プレイヤー体験を意識した設計”を重視しています。
+        </p>
+    </div>
+
+    <!-- ② 開発スタイル -->
+    <div class="card">
+        <h2>開発スタイル</h2>
+        <p>
+            ・まず“遊びの核”を作ることを重視<br>
+            ・実装しながら設計を改善するスタイル<br>
+            ・UX（気持ちよさ）を最優先に調整
+        </p>
+    </div>
+
+    <!-- ③ できること -->
+    <div class="card">
+        <h2>できること</h2>
+
+        <span class="badge">Unity</span>
+        <span class="badge">C#</span>
+        <span class="badge">C++</span>
+        <span class="badge">DxLib</span>
+        <span class="badge">DirectXTK</span>
+
+        <p style="margin-top:10px;">
+            2Dアクション・UI設計・ステージ生成・ゲームループ構築など
+        </p>
+    </div>
+
+    <!-- ④ 強み -->
+    <div class="card">
+        <h2>強み</h2>
+
+        <div class="strengths">
+
+            <div>
+                <h3>継続力</h3>
+                <p>
+                    ゲーム制作ブログを1年以上継続し、100記事以上投稿。
+                    技術の言語化を習慣化しています。
+                </p>
+            </div>
+
+            <div>
+                <h3>行動力</h3>
+                <p>
+                    入学初期からチーム開発・ゲームジャムに参加し、
+                    短期間開発経験を積んでいます。
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ⑤ 経歴 -->
+    <div class="card">
+        <h2>経歴</h2>
+        <p>
+            ・専門学校にてゲームプログラミング学習中（2028年卒予定）<br>
+            ・Unity / C++で個人開発複数制作<br>
+            ・ゲームジャム・チーム制作経験あり
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
