@@ -2,247 +2,302 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>ABOUT | ポートフォリオ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>ABOUT</title>
+
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script src="main.js" defer></script>
+
 <style>
-
-:root {
-    --bg: #0f0f10;
-    --panel: #161616;
-    --text: #ffffff;
-    --sub: rgba(255,255,255,0.7);
-
-    --accent: #00bcd4;
-    --accent2: #1e90ff;
-}
-
-body {
-    margin: 0;
-    font-family: "Inter", "Noto Sans JP", sans-serif;
-    background: radial-gradient(circle at top, #1a1a1a, #0f0f10);
-    color: white;
-    font-family: "Inter", "Noto Sans JP", sans-serif;
-}
-
-/* ナビ */
-.nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-}
-
-.nav a {
-    color: white;
-    text-decoration: none;
-    opacity: 0.6;
-    transition: 0.3s;
-}
-
-.nav a:hover {
-    opacity: 1;
-}
-
-/* ヘッダー */
-header {
-    text-align: center;
-    padding: 80px 20px 40px;
-}
-
-header h1 {
-    font-size: 44px;
-    margin: 0;
-}
-
-header p {
-    opacity: 0.7;
-    margin-top: 10px;
-}
-
-/* コンテンツ */
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-/* カード */
-.card {
-    background: #161616;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-/* セクション */
-section {
-    padding: 100px 20px;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-/* テキスト */
-p {
-    line-height: 1.8;
-    opacity: 0.85;
-}
-
-/* 強み */
-.strengths {
+.about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
 }
 
-@media (max-width: 700px) {
-    .strengths {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ボタン */
-button, .btn {
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
+/* =========================
+CARD BASE
+========================= */
+.status-card {
+    background: linear-gradient(180deg, #141820, #10131a);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 22px;
     transition: 0.3s;
-}
-
-button:hover, .btn:hover {
-    opacity: 0.85;
-    transform: translateY(-2px);
-}
-
-/* バッジ */
-.badge {
-    display: inline-block;
-    padding: 4px 10px;
-    font-size: 12px;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.1);
-    margin-right: 5px;
-}
-
-h1, h2, h3 {
-    letter-spacing: 1px;
-}
-
-h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
     position: relative;
+    overflow: hidden;
 }
 
-h2::after {
+/* 光のライン演出 */
+.status-card::before {
     content: "";
-    display: block;
-    width: 60px;
-    height: 3px;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4cc9f0, transparent);
+    opacity: 0.3;
+}
+
+/* hover */
+.status-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(76,201,240,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* =========================
+HEADER
+========================= */
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.status-header h3 {
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #4cc9f0;
+}
+
+/* レア度バッジ */
+.badge {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(76,201,240,0.3);
+    color: #4cc9f0;
+    background: rgba(76,201,240,0.08);
+}
+
+/* =========================
+TEXT
+========================= */
+.status-card p {
+    font-size: 13px;
+    color: #eaeaea;
+    opacity: 0.9;
+    line-height: 1.75;
+}
+
+/* =========================
+MAIN CARD（主役）
+========================= */
+.status-card.primary {
+    border: 1px solid rgba(76,201,240,0.6);
+    box-shadow: 0 0 25px rgba(76,201,240,0.1);
+}
+
+.status-card.primary .status-header h3 {
+    font-size: 17px;
+}
+
+/* =========================
+PROFILE LARGE CARD
+========================= */
+
+.profile-card {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 上部横レイアウト */
+.profile-top {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* 画像 */
+.profile-img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 2px solid rgba(76,201,240,0.6);
+    box-shadow: 0 0 25px rgba(76,201,240,0.25);
+}
+
+/* 名前 */
+.name {
+    font-size: 34px;
+    font-weight: 700;
+    color: #eaeaea;
+    letter-spacing: 2px;
+}
+
+/* 職業 */
+.job {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #4cc9f0;
+}
+
+/* サブ */
+.meta {
+    font-size: 13px;
+    color: #a8b0bd;
+    margin-top: 4px;
+}
+
+/* 本文 */
+.profile-body p {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* 経歴 */
+.career {
     margin-top: 10px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    padding-left: 12px;
+    border-left: 2px solid rgba(76,201,240,0.4);
+}
+
+.career div {
+    font-size: 12px;
+    color: #a8b0bd;
+    margin-bottom: 4px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- ナビ -->
+<!-- =========================
+HEADER
+========================= -->
+<header data-fade>
 <div class="nav">
-    <a href="index.html">← TOP</a>
-    <a href="works.html">WORKS</a>
-</div>
+    <div class="logo">HARUTA PORTFOLIO</div>
 
-<!-- ヘッダー -->
-<header>
-    <h1>ABOUT</h1>
-    <p>ゲームプログラマー志望</p>
+    <ul>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="works.html">WORKS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="skills.html">SKILLS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+</div>
 </header>
 
+<!-- =========================
+ABOUT (STATUS UI)
+========================= -->
+<section>
 <div class="container">
 
-    <!-- ① 自己紹介 -->
-    <div class="card">
-        <h2>自己紹介</h2>
-        <p>
-            長屋晴太です。ゲームプログラマーを目指し、<br>
-            Unity / C++を用いたゲーム制作を行っています。
-        </p>
-        <p>
-            UI設計やゲームループ設計など、<br>
-            “プレイヤー体験を意識した設計”を重視しています。
-        </p>
-    </div>
+<h2 data-fade>ABOUT / STATUS</h2>
 
-    <!-- ② 開発スタイル -->
-    <div class="card">
-        <h2>開発スタイル</h2>
-        <p>
-            ・まず“遊びの核”を作ることを重視<br>
-            ・実装しながら設計を改善するスタイル<br>
-            ・UX（気持ちよさ）を最優先に調整
-        </p>
-    </div>
+<div class="about-grid">
 
-    <!-- ③ できること -->
-    <div class="card">
-        <h2>できること</h2>
+    <!-- PROFILE -->
+    <div class="status-card primary profile-card" data-fade>
 
-        <span class="badge">Unity</span>
-        <span class="badge">C#</span>
-        <span class="badge">C++</span>
-        <span class="badge">DxLib</span>
-        <span class="badge">DirectXTK</span>
+        <div class="profile-top">
 
-        <p style="margin-top:10px;">
-            2Dアクション・UI設計・ステージ生成・ゲームループ構築など
-        </p>
-    </div>
-
-    <!-- ④ 強み -->
-    <div class="card">
-        <h2>強み</h2>
-
-        <div class="strengths">
-
-            <div>
-                <h3>継続力</h3>
-                <p>
-                    ゲーム制作ブログを1年以上継続し、100記事以上投稿。
-                    技術の言語化を習慣化しています。
-                </p>
+            <!-- 顔画像 -->
+            <div class="profile-img">
+                <img src="images/profile.png" alt="profile">
             </div>
 
-            <div>
-                <h3>行動力</h3>
-                <p>
-                    入学初期からチーム開発・ゲームジャムに参加し、
-                    短期間開発経験を積んでいます。
-                </p>
+            <div class="profile-info">
+                <div class="job">GAME PROGRAMMER</div>
+                <h1 class="name">長屋 晴太</h1>
+                <div class="meta">Unity / C++ / DirectXTK</div>
             </div>
 
         </div>
+
+        <div class="profile-body">
+            <p>
+                ゲームプログラマー志望。<br>
+                愛知県豊橋市出身<br>
+                UI設計・ゲームループ設計・演出設計を中心に開発しています。
+            </p>
+
+            <div class="career">
+                <div>2025/04 - トライデントコンピュータ専門学校入学</div>
+                <div>2025/05 - コンテスト初応募</div>
+                <div>2025/06 - ゲームジャム初参加</div>
+                <div>2025/09 - 「Over Fish」TCコンペ受賞＆企業プレゼン</div>
+                <div>2025/11 - 「Click Hero」クラス内 総合1位/技術賞1位</div>
+                <div>2026/01 - 「RETURNRECORD」「POTION BERSERKER」進級展展示</div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- ⑤ 経歴 -->
-    <div class="card">
-        <h2>経歴</h2>
+    <!-- MOTIVATION -->
+    <div class="status-card" data-fade>
+        <div class="status-header">
+            <h3>MOTIVATION</h3>
+            <span class="badge">WHY</span>
+        </div>
+
         <p>
-            ・専門学校にてゲームプログラミング学習中（2028年卒予定）<br>
-            ・Unity / C++で個人開発複数制作<br>
-            ・ゲームジャム・チーム制作経験あり
+            「遊びの面白さを設計できるエンジニア」を目指しています。<br>
+            プレイヤー体験を中心にした設計に強い興味があります。
+        </p>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="status-card" data-fade>
+        <div class="status-header">
+            <h3>SKILL STYLE</h3>
+            <span class="badge">CORE</span>
+        </div>
+
+        <p>
+            ・ゲームループ設計<br>
+            ・UI / UX設計<br>
+            ・当たり判定 / シーン管理<br>
+            ・演出設計（テンポ・カメラ）
+        </p>
+    </div>
+
+    <!-- PROOF -->
+    <div class="status-card" data-fade>
+        <div class="status-header">
+            <h3>ACHIEVEMENT</h3>
+            <span class="badge">LOG</span>
+        </div>
+
+        <p>
+            ゲーム制作ブログを1年以上継続（100記事以上）<br>
+            Unity / DxLib / DirectXTKで複数作品制作
+        </p>
+    </div>
+
+    <!-- FUTURE -->
+    <div class="status-card" data-fade>
+        <div class="status-header">
+            <h3>FUTURE</h3>
+            <span class="badge">VISION</span>
+        </div>
+
+        <p>
+            「触っていて気持ちいいゲーム」を設計できるエンジニアへ<br>
+            面白さをコードで再現することにこだわっています
         </p>
     </div>
 
 </div>
+
+</div>
+</section>
 
 </body>
 </html>

@@ -2,327 +2,369 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>WORKS | ポートフォリオ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>WORKS - SAVE DATA</title>
+
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script src="main.js" defer></script>
+
 <style>
+/* =========================
+SAVE DATA STYLE WORKS
+========================= */
 
-:root {
-    --bg: #0f0f10;
-    --panel: #161616;
-    --text: #ffffff;
-    --sub: rgba(255,255,255,0.7);
-
-    --accent: #00bcd4;
-    --accent2: #1e90ff;
-}
-
-body {
-    margin: 0;
-    font-family: "Inter", "Noto Sans JP", sans-serif;
-    background: radial-gradient(circle at top, #1a1a1a, #0f0f10);
-    color: white;
-    font-family: "Inter", "Noto Sans JP", sans-serif;
-}
-
-/* ===== NAV ===== */
-.nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-}
-
-.nav a {
-    color: white;
-    text-decoration: none;
-    opacity: 0.6;
-    transition: 0.3s;
-}
-
-.nav a:hover {
-    opacity: 1;
-}
-
-/* ===== HEADER ===== */
-header {
-    text-align: center;
-    padding: 60px 20px 20px;
-}
-
-header h1 {
-    font-size: 40px;
-    margin: 0;
-}
-
-header p {
-    opacity: 0.7;
-}
-
-/* ===== GRID ===== */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.grid {
+.save-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-/* ===== CARD ===== */
-.card {
-    background: var(--panel);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 20px;
-
-    border: 1px solid rgba(255,255,255,0.06);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-
-    transition: 0.3s;
+/* セーブスロット */
+.save-slot {
+    background: #141820;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.25s ease;
+    cursor: pointer;
 }
 
-.card:hover {
+.save-slot:hover {
     transform: translateY(-6px);
+    border-color: rgba(76,201,240,0.5);
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-/* 内容 */
-.card-body {
-    padding: 15px;
-}
-
-.card h3 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.card p {
-    font-size: 13px;
-    opacity: 0.7;
-    margin: 8px 0;
-}
-
-/* 技術タグ */
-.tags {
+/* ヘッダー部分（ファイル名UI） */
+.slot-header {
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 10px;
+    justify-content: space-between;
+    padding: 12px 14px;
+    font-size: 13px;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: #a8b0bd;
 }
 
+/* メイン情報 */
+.slot-body {
+    padding: 14px;
+}
+
+.slot-body p {
+    font-size: 13px;
+    color: #eaeaea;
+    opacity: 0.9;
+    margin-bottom: 6px;
+}
+
+/* タイトル強調 */
+.save-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #4cc9f0;
+}
+
+/* 選択UI感 */
+.save-slot::after {
+    content: "▶ LOAD";
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 12px;
+    color: #4cc9f0;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 0.25s;
+}
+
+.save-slot:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ラベル */
 .tag {
+    display: inline-block;
     font-size: 11px;
     padding: 3px 8px;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    background: rgba(76,201,240,0.1);
+    border: 1px solid rgba(76,201,240,0.3);
+    color: #4cc9f0;
+    margin-bottom: 8px;
 }
 
-/* ボタン */
-button, .btn {
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
+.slot-image {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background: #0b0d10;
+    border-bottom: 1px solid rgba(76,201,240,0.2);
 }
 
-button:hover, .btn:hover {
-    opacity: 0.85;
-    transform: translateY(-2px);
+.slot-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s ease;
 }
 
-.btn:hover {
-    background: white;
-    color: black;
-}
-
-/* セクション */
-section {
-    padding: 100px 20px;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-/* レスポンシブ */
-@media (max-width: 900px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-h1, h2, h3 {
-    letter-spacing: 1px;
-}
-
-h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-h2::after {
+.slot-image::after {
     content: "";
-    display: block;
-    width: 60px;
-    height: 3px;
-    margin-top: 10px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+.save-slot:hover .slot-image img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- ナビ -->
+<!-- =========================
+HEADER
+========================= -->
+<header data-fade>
 <div class="nav">
-    <a href="index.html">← TOPへ戻る</a>
-</div>
+    <div class="logo">HARUTA PORTFOLIO</div>
 
-<!-- ヘッダー -->
-<header>
-    <h1>WORKS</h1>
-    <p>制作したゲーム一覧</p>
+    <ul>
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="works.html">WORKS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="skills.html">SKILLS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+</div>
 </header>
 
-<!-- 作品一覧 -->
+<!-- =========================
+WORKS SAVE DATA UI
+========================= -->
+<section>
 <div class="container">
 
-    <div class="grid">
+<h2 data-fade>SAVE DATA / WORKS</h2>
 
-        <!-- ① Click Hero -->
-        <div class="card">
-            <img src="images/ClickHero.png">
+<div class="save-grid">
 
-            <div class="card-body">
-                <h3>Click Hero</h3>
-                <p>クリック×放置ゲーム（Unity）</p>
+    <!-- SLOT 01 -->
+    <div class="save-slot" data-fade>
 
-                <div class="tags">
-                    <span class="tag">Unity</span>
-                    <span class="tag">UI設計</span>
-                    <span class="tag">ゲームバランス</span>
-                </div>
-
-                <a class="btn" href="info/ClickHero_info.html">詳細</a>
-            </div>
+        <div class="slot-image">
+            <img src="images/FlipMaze.png" alt="Click Hero">
         </div>
 
-        <!-- ② Flip Maze -->
-        <div class="card">
-            <img src="images/FlipMaze.png">
-
-            <div class="card-body">
-                <h3>Flip Maze</h3>
-                <p>3Dアクション×反転ギミック</p>
-
-                <div class="tags">
-                    <span class="tag">Unity</span>
-                    <span class="tag">3D</span>
-                    <span class="tag">ギミック設計</span>
-                </div>
-
-                <a class="btn" href="info/FlipMaze_info.html">詳細</a>
-            </div>
+        <div class="slot-header">
+            <span>FILE 01</span>
+            <span>3D ACT</span>
         </div>
 
-        <!-- ③ Return Record -->
-        <div class="card">
-            <img src="images/ReturnRecord.png">
+        <div class="slot-body">
+            <div class="save-title">Flip Maze</div>
+            <div class="tag">3D Action</div>
 
-            <div class="card-body">
-                <h3>Return Record</h3>
-                <p>時間操作2Dアクション</p>
-
-                <div class="tags">
-                    <span class="tag">C++</span>
-                    <span class="tag">時間制御</span>
-                    <span class="tag">ゲーム設計</span>
-                </div>
-
-                <a class="btn" href="info/ReturnRecord_info.html">詳細</a>
-            </div>
+            <p>3Dアクションゲーム</p>
+            <p>ギミック設計 / カメラ制御</p>
         </div>
 
-        <!-- ④ Potion Berserker -->
-        <div class="card">
-            <img src="images/PotionBerserker.png">
+    </div>
 
-            <div class="card-body">
-                <h3>POTION BERSERKER</h3>
-                <p>2Dアクション×クラフト</p>
+    <!-- SLOT 02 -->
+    <div class="save-slot" data-fade>
 
-                <div class="tags">
-                    <span class="tag">Unity</span>
-                    <span class="tag">組み合わせ</span>
-                    <span class="tag">戦闘設計</span>
-                </div>
-
-                <a class="btn" href="info/PotionBerserker_info.html">詳細</a>
-            </div>
+        <div class="slot-image">
+            <img src="images/PotionBerserker.png" alt="Click Hero">
         </div>
 
-        <!-- ⑤ Over Fish -->
-        <div class="card">
-            <img src="images/OverFish.png">
-
-            <div class="card-body">
-                <h3>Over Fish</h3>
-                <p>TD×2Dアクション</p>
-
-                <div class="tags">
-                    <span class="tag">Unity</span>
-                    <span class="tag">敵AI</span>
-                    <span class="tag">戦略</span>
-                </div>
-
-                <a class="btn" href="info/OverFish_info.html">詳細</a>
-            </div>
+        <div class="slot-header">
+            <span>FILE 02</span>
+            <span>2D ACT</span>
         </div>
 
-        <!-- ⑥ Deep Dungeon -->
-        <div class="card">
-            <img src="images/DeepDungeon.png">
+        <div class="slot-body">
+            <div class="save-title">POTION BERSERKER</div>
+            <div class="tag">2D Action / Blend</div>
 
-            <div class="card-body">
-                <h3>Deep Dungeon</h3>
-                <p>ローグライク2Dアクション</p>
+            <p>2Dアクション×組み合わせ</p>
+            <p>UI設計 / 色の調合 / 効果別アニメーション</p>
+        </div>
 
-                <div class="tags">
-                    <span class="tag">Unity</span>
-                    <span class="tag">ランダム生成</span>
-                    <span class="tag">設計</span>
-                </div>
+    </div>
 
-                <a class="btn" href="info/DeepDungeon_info.html">詳細</a>
-            </div>
+    <!-- SLOT 03 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-image">
+            <img src="images/ReturnRecord.png" alt="Click Hero">
+        </div>
+
+        <div class="slot-header">
+            <span>FILE 03</span>
+            <span>TIME ACT</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">Return Record</div>
+            <div class="tag">Time System</div>
+
+            <p>2Dアクション×時間操作</p>
+            <p>状態管理 / リワインド実装</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 04 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-image">
+            <img src="images/clickhero.png" alt="Click Hero">
+        </div>
+
+        <div class="slot-header">
+            <span>FILE 04</span>
+            <span>Click</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">Click Hero</div>
+            <div class="tag">Click Game</div>
+
+            <p>クリック×放置</p>
+            <p>UI設計 / ゲームループ / 演出設計</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 05 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-image">
+            <img src="images/OverFish.png" alt="Over Fish">
+        </div>
+
+        <div class="slot-header">
+            <span>FILE 05</span>
+            <span>2D ACT × TD</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">Over Fish</div>
+            <div class="tag">2D Action / TD</div>
+
+            <p>2Dアクション×タワーディフェンス</p>
+            <p>シーン管理 / 必殺技演出</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 06 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-image">
+            <img src="images/DeepDungeon.png" alt="Deep Dungeon">
+        </div>
+
+        <div class="slot-header">
+            <span>FILE 06</span>
+            <span>2DACT × ROGUELIKE</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">Deep Dungeon</div>
+            <div class="tag">2D Action / RogueLike</div>
+
+            <p>2Dアクション×ローグライク</p>
+            <p>UI設計 / ステータス成長 / スキル獲得</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 07 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-image">
+            <img src="images/Koutei.png" alt="Koutei">
+        </div>
+
+        <div class="slot-header">
+            <span>FILE 07</span>
+            <span>2DACT</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">コウテイぺんぎん</div>
+            <div class="tag">2D Action</div>
+
+            <p>2Dアクション</p>
+            <p>ゲームジャム作品 / CSVによるマップデータ管理</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 08 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-image">
+            <img src="images/Angel.png" alt="Angel">
+        </div>
+
+        <div class="slot-header">
+            <span>FILE 08</span>
+            <span>MINI GAME / MULTI-ENDING</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">がんばれ！天使ちゃん</div>
+            <div class="tag">Mini Game / Multi Ending</div>
+
+            <p>ミニゲーム×マルチエンド</p>
+            <p>コンテスト作品 / マルチエンドシステム</p>
+        </div>
+
+    </div>
+
+    <!-- SLOT 09 -->
+    <div class="save-slot" data-fade>
+
+        <div class="slot-image">
+            <img src="images/HookingBox.png" alt="Angel">
+        </div>
+
+        <div class="slot-header">
+            <span>FILE 09</span>
+            <span>2DACT × WIRE</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">HOOKING BOX</div>
+            <div class="tag">"D Action / Wire"</div>
+
+            <p>2Dアクション×ワイヤー</p>
+            <p>初タイトル作品 / 疑似ワイヤーアクション</p>
         </div>
 
     </div>
 
 </div>
+
+</div>
+</section>
 
 </body>
 </html>
