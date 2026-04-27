@@ -126,14 +126,14 @@ let cards = [...document.querySelectorAll(".card")];
 
 const works = [
     { img:"images/FlipMaze.png", url:"info/FlipMaze_info.html", color:"linear-gradient(#fff,#ddd)", title:"Flip Maze", desc:"3Dアクション×反転"},
-    { img:"images/PotionBerserker.png", url:"info/PotionBerserker_info.html", color:"linear-gradient(#2c2c2c,#6b6b6b)", title:"Potion Berserker", desc:"2Dアクション×組み合わせ"},
-    { img:"images/ReturnRecord.png", url:"info/ReturnRecord_info.html", color:"linear-gradient(#000,#2b2b2b)", title:"Return Record", desc:"2Dアクション×時間操作"},
+    { img:"images/PotionBerserker.png", url:"info/PotionBerserker_info.html", color:"linear-gradient(#2c2c2c,#6b6b6b)", title:"POTION BERSERKER", desc:"2Dアクション×組み合わせ"},
+    { img:"images/ReturnRecord.png", url:"info/ReturnRecord_info.html", color:"linear-gradient(#000,#2b2b2b)", title:"RETURN RECORD", desc:"2Dアクション×時間操作"},
     { img:"images/ClickHero.png", url:"info/ClickHero_info.html", color:"linear-gradient(#e0e0e0,#bbb)", title:"Click Hero", desc:"クリック×放置"},
     { img:"images/OverFish.png", url:"info/OverFish_info.html", color:"linear-gradient(#1e90ff,#00bcd4)", title:"Over Fish", desc:"2Dアクション×タワーディフェンス"},
     { img:"images/DeepDungeon.png", url:"info/DeepDungeon_info.html", color:"linear-gradient(#2ecc71,#27ae60)", title:"Deep Dungeon", desc:"2Dアクション×ローグライク"},
     { img:"images/Koutei.png", url:"info/Koutei_info.html", color:"linear-gradient(#00bcd4,#4dd0e1)", title:"コウテイぺんぎん", desc:"2Dアクション"},
     { img:"images/Angel.png", url:"info/Angel_info.html", color:"linear-gradient(#fff,#f5f5f5)", title:"がんばれ！天使ちゃん", desc:"2Dミニゲーム×マルチエンド"},
-    { img:"images/HookingBox.png", url:"info/HookingBox_info.html", color:"linear-gradient(#000,#3a3a3a)", title:"Hooking Box", desc:"2D×ワイヤーアクション"}
+    { img:"images/HookingBox.png", url:"info/HookingBox_info.html", color:"linear-gradient(#000,#3a3a3a)", title:"HOOKING BOX", desc:"2D×ワイヤーアクション"}
 ];
 
 /* 初期 */
@@ -165,10 +165,37 @@ function init(){
 
 /* テキスト */
 function updateText(){
+
     const current = works[index];
-    title.textContent = current.title;
-    desc.textContent = current.desc;
-    bgRight.style.background = current.color;
+
+    // フェードアウト
+    gsap.to([title, desc], {
+        opacity: 0,
+        y: 10,
+        duration: 0.3,
+        ease: "power2.out",
+        onComplete: () => {
+
+            // テキスト差し替え
+            title.textContent = current.title;
+            desc.textContent = current.desc;
+            bgRight.style.background = current.color;
+
+            // フェードイン
+            gsap.fromTo([title, desc],
+                {
+                    opacity: 0,
+                    y: -10
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out"
+                }
+            );
+        }
+    });
 }
 
 /* ズーム */
