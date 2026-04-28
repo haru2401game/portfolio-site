@@ -36,6 +36,20 @@ function initSkillBars() {
     });
 }
 
+gsap.utils.toArray(".work-card").forEach((card, i) => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: "power3.out"
+    });
+});
+
 /* =========================
 INIT
 ========================= */
