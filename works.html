@@ -133,6 +133,35 @@ SAVE DATA STYLE WORKS
     filter: brightness(1.1);
 }
 
+/* フィルターUI */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(76,201,240,0.4);
+    background: transparent;
+    color: #4cc9f0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* hover */
+.filter-btn:hover {
+    background: rgba(76,201,240,0.2);
+}
+
+/* active */
+.filter-btn.active {
+    background: #4cc9f0;
+    color: #000;
+}
+
 
 
 /* =========================
@@ -228,10 +257,18 @@ WORKS SAVE DATA UI
 
 <h2 data-fade>SAVE DATA / WORKS</h2>
 
+<div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">ALL</button>
+    <button class="filter-btn" data-filter="2d">2D</button>
+    <button class="filter-btn" data-filter="3d">3D</button>
+    <button class="filter-btn" data-filter="unity">Unity</button>
+    <button class="filter-btn" data-filter="C++">C++</button>
+</div>
+
 <div class="save-grid">
 
     <!-- SLOT 01 -->
-    <a href="info/FlipMaze.html" class="save-slot" data-fade>
+    <a href="info/FlipMaze.html" class="save-slot" data-category="3d unity" data-fade>
 
         <div class="slot-image">
             <img src="images/FlipMaze.png" alt="FlipMaze">
@@ -253,7 +290,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 02 -->
-    <a href="info/PotionBerserker.html" class="save-slot" data-fade>
+    <a href="info/PotionBerserker.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
             <img src="images/PotionBerserker.png" alt="PotionBerserker">
@@ -275,7 +312,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 03 -->
-    <a href="info/ReturnRecord.html" class="save-slot" data-fade>
+    <a href="info/ReturnRecord.html" class="save-slot" data-category="2d C++" data-fade>
 
         <div class="slot-image">
             <img src="images/ReturnRecord.png" alt="ReturnRecord">
@@ -297,7 +334,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 04 -->
-    <a href="info/ClickHero.html" class="save-slot" data-fade>
+    <a href="info/ClickHero.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
             <img src="images/ClickHero.png" alt="ClickHero">
@@ -319,7 +356,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 05 -->
-    <a href="info/OverFish.html" class="save-slot" data-fade>
+    <a href="info/OverFish.html" class="save-slot" data-category="2d C++" data-fade>
 
         <div class="slot-image">
             <img src="images/OverFish.png" alt="OverFish">
@@ -341,7 +378,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 06 -->
-    <a href="info/DeepDungeon.html" class="save-slot" data-fade>
+    <a href="info/DeepDungeon.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
             <img src="images/DeepDungeon.png" alt="DeepDungeon">
@@ -363,7 +400,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 07 -->
-    <a href="info/Koutei.html" class="save-slot" data-fade>
+    <a href="info/Koutei.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
             <img src="images/Koutei.png" alt="Koutei">
@@ -385,7 +422,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 08 -->
-    <a href="info/Angel.html" class="save-slot" data-fade>
+    <a href="info/Angel.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
             <img src="images/Angel.png" alt="Angel">
@@ -407,7 +444,7 @@ WORKS SAVE DATA UI
     </a>
 
     <!-- SLOT 09 -->
-    <a href="info/HookingBox.html" class="save-slot" data-fade>
+    <a href="info/HookingBox.html" class="save-slot" data-category="2d C++" data-fade>
 
         <div class="slot-image">
             <img src="images/HookingBox.png" alt="HookingBox">
@@ -432,6 +469,59 @@ WORKS SAVE DATA UI
 
 </div>
 </section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const buttons = document.querySelectorAll(".filter-btn");
+    const items = document.querySelectorAll(".save-slot");
+
+    function showItem(item) {
+        item.style.display = "block";
+        item.style.opacity = "0";
+        item.style.transform = "scale(0.95) translateY(10px)";
+
+        requestAnimationFrame(() => {
+            item.style.transition = "0.25s ease";
+            item.style.opacity = "1";
+            item.style.transform = "scale(1) translateY(0)";
+        });
+    }
+
+    function hideItem(item) {
+        item.style.transition = "0.2s ease";
+        item.style.opacity = "0";
+        item.style.transform = "scale(0.95) translateY(10px)";
+
+        setTimeout(() => {
+            item.style.display = "none";
+        }, 200);
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+
+            // active切り替え
+            buttons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const filter = btn.dataset.filter;
+
+            items.forEach(item => {
+                const category = item.dataset.category || "";
+
+                if (filter === "all" || category.includes(filter)) {
+                    showItem(item);
+                } else {
+                    hideItem(item);
+                }
+            });
+
+        });
+    });
+
+});
+</script>
 
 </body>
 </html>

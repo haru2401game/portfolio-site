@@ -114,6 +114,105 @@ TRANSITION OVERLAY（WORKS遷移用）
     color: #4cc9f0;
 }
 
+/* =========================
+STATUS UI（実績）
+========================= */
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* カード */
+.status-box {
+    background: linear-gradient(180deg, #141820, #10131a);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    transition: all 0.3s ease;
+}
+
+/* 光ライン */
+.status-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4cc9f0, transparent);
+    opacity: 0.3;
+}
+
+.status-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(76,201,240,0.25), transparent 70%);
+    opacity: 0;
+    transition: 0.4s;
+}
+
+/* ホバー */
+.status-box:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: rgba(76,201,240,0.8);
+    box-shadow: 
+        0 20px 60px rgba(0,0,0,0.8),
+        0 0 20px rgba(76,201,240,0.3);
+}
+
+.status-box:hover::after {
+        opacity: 1;
+}
+
+/* 数字跳ね */
+.status-box:hover .status-value {
+    transform: scale(1.1);
+    color: #4cc9f0;
+    transition: 0.3s;
+}
+
+/* ラベル */
+.status-label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #4cc9f0;
+    margin-bottom: 10px;
+}
+
+/* 数字 */
+.status-value {
+    font-size: 42px;
+    font-weight: 700;
+    color: #eaeaea;
+}
+
+/* 説明 */
+.status-desc {
+    font-size: 12px;
+    color: #a8b0bd;
+    margin-top: 6px;
+}
+
+/* 強調 */
+.status-box.highlight {
+    border: 1px solid rgba(76,201,240,0.6);
+    box-shadow: 0 0 25px rgba(76,201,240,0.15);
+}
+
+.works-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 
 
 /* =========================
@@ -184,6 +283,82 @@ TRANSITION OVERLAY（WORKS遷移用）
         padding: 10px;
     }
 
+    .status-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2列に固定 */
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .status-box {
+        padding: 16px;
+        border-radius: 12px;
+        transition: transform 0.15s ease;
+    }
+
+    .status-box:active {
+        transform: scale(0.95);
+    }
+
+    .status-box::after {
+        display: none;
+    }
+
+    .status-value {
+        transition: none;
+    }
+
+    .status-label {
+        font-size: 10px;
+        margin-bottom: 6px;
+        letter-spacing: 1px;
+    }
+
+    .status-value {
+        font-size: 28px; /* 小さくして詰まり防止 */
+    }
+
+    .status-desc {
+        font-size: 10px;
+        margin-top: 4px;
+    }
+
+    /* 3つ目を中央寄せ（ちょいテク） */
+    .status-box:nth-child(3) {
+        grid-column: span 2;
+        max-width: 180px;
+        margin: 0 auto;
+    }
+
+    .works-scroll {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+
+        padding-bottom: 10px;
+    }
+
+    /* スクロールバー消す */
+    .works-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .works-scroll .card {
+        flex: 0 0 85%; /* 1枚が画面の85% */
+        scroll-snap-align: center;
+
+        border-radius: 16px;
+    }
+
+    /* VIEW ALLだけ少し違う */
+    .works-scroll .view-all {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
 
 </style>
@@ -218,77 +393,120 @@ MAIN CONTENT
 ========================= -->
 <div class="main-content" id="mainContent">
 
-<header data-fade>
-<div class="nav">
-    <div class="logo">HARUTA PORTFOLIO</div>
-    <ul>
-        <li><a href="index.html">TOP</a></li>
-        <li><a href="works.html">WORKS</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="skills.html">SKILLS</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-    </ul>
-</div>
-</header>
-
-<div class="hero">
-
-    <div class="hero-content">
-
-        <div class="hero-profile" data-fade>
-            <img src="images/profile.png">
+    <header data-fade>
+        <div class="nav">
+            <div class="logo">HARUTA PORTFOLIO</div>
+            <ul>
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="works.html">WORKS</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="skills.html">SKILLS</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
         </div>
+    </header>
 
-        <h1 class="hero-name" data-fade>
-            HARUTA NAGAYA
-        </h1>
+    <div class="hero">
 
-        <p class="hero-sub" data-fade>
-            Unity / C++ Game Programmer
-        </p>
+        <div class="hero-content">
 
-        <p class="hero-meta" data-fade>
-            2028年卒 / 専門学生
-        </p>
+            <div class="hero-profile" data-fade>
+                <img src="images/profile.png">
+            </div>
 
-        <h2 class="hero-title" data-fade>
-            “遊びの体験を設計できる<br>
-            ゲームプログラマー志望”
-        </h2>
+            <h1 class="hero-name" data-fade>
+                HARUTA NAGAYA
+            </h1>
 
-        <div class="hero-btns" data-fade>
-            <a href="works.html" class="btn primary" id="worksBtn">START GAME</a>
-            <a href="about.html" class="btn">PROFILE</a>
+            <p class="hero-sub" data-fade>
+                Unity / C++ Game Programmer
+            </p>
+
+            <p class="hero-meta" data-fade>
+                2028年卒 / 専門学生
+            </p>
+
+            <h2 class="hero-title" data-fade>
+                “遊びの体験を設計できる<br>
+                ゲームプログラマー志望”
+            </h2>
+
+            <div class="hero-btns" data-fade>
+                <a href="works.html" class="btn primary" id="worksBtn">START GAME</a>
+                <a href="about.html" class="btn">PROFILE</a>
+            </div>
+
         </div>
 
     </div>
 
-</div>
+    <!-- 実績 -->
+    <section>
+        <div class="container">
 
-<section>
-<div class="container">
-<h2 data-fade>VALUE</h2>
+            <h2 data-fade>STATUS</h2>
 
-<div class="grid">
+            <div class="status-grid">
 
-<div class="card-ui" data-fade>
-<h3>ゲーム設計力</h3>
-<p>UI・状態管理・ゲームループ設計</p>
-</div>
+                <div class="status-box highlight" data-fade>
+                    <div class="status-label">BLOG</div>
+                    <div class="status-value">100+</div>
+                    <div class="status-desc">記事投稿</div>
+                </div>
 
-<div class="card-ui" data-fade>
-<h3>実装力</h3>
-<p>Unity / C++ 両対応</p>
-</div>
+                <div class="status-box highlight" data-fade>
+                    <div class="status-label">WORKS</div>
+                    <div class="status-value">10+</div>
+                    <div class="status-desc">制作作品</div>
+                </div>
 
-<div class="card-ui" data-fade>
-<h3>改善力</h3>
-<p>プレイヤー体験ベースの調整</p>
-</div>
+                <div class="status-box highlight" data-fade>
+                    <div class="status-label">AWARD</div>
+                    <div class="status-value">3+</div>
+                    <div class="status-desc">受賞歴</div>
+                </div>
 
-</div>
-</div>
-</section>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <h2>FEATURED WORKS</h2>
+
+            <div class="works-scroll">
+
+                <a href="info/FlipMaze.html" class="card">
+                    <img src="images/FlipMaze.png">
+                    <div class="content">
+                        <h3>Flip Maze</h3>
+                        <p>ギミック設計 / カメラ制御</p>
+                    </div>
+                </a>
+
+                <a href="info/PotionBerserker.html" class="card">
+                    <img src="images/PotionBerserker.png">
+                    <div class="content">
+                        <h3>Potion Berserker</h3>
+                        <p>UI設計 / 色の調合</p>
+                    </div>
+                </a>
+
+                <a href="works.html" class="card view-all">
+                    <div class="content">
+                        <h3>VIEW ALL →</h3>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+    <a href="contact.html">CONTACT ME</a>
+    </section>
 
 </div>
 
