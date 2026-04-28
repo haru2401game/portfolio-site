@@ -99,6 +99,74 @@ RPG SKILL UI
     object-fit: contain;
 }
 
+
+
+
+/* =========================
+スマホ対応
+========================= */
+@media (max-width: 768px) {
+
+    /* =========================
+    PANEL
+    ========================= */
+    .rpg-panel {
+        padding: 14px;
+    }
+
+    /* =========================
+    タイトルレイアウト変更
+    ========================= */
+    .rpg-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* アイコン小さく */
+    .skill-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* タイトル */
+    .rpg-title h3 {
+        font-size: 18px;
+    }
+
+    /* レベル表示 */
+    .level {
+        font-size: 14px;
+        padding: 2px 8px;
+    }
+
+    /* =========================
+    バー
+    ========================= */
+    .rpg-bar {
+        height: 10px;
+    }
+
+    /* =========================
+    テキスト
+    ========================= */
+    .stats {
+        font-size: 12px;
+    }
+
+    /* =========================
+    hover無効
+    ========================= */
+    .rpg-panel:hover {
+        transform: none;
+    }
+
+    .rpg-panel:hover .skill-icon {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
 </style>
 
 </head>

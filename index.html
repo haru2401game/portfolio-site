@@ -114,6 +114,78 @@ TRANSITION OVERLAY（WORKS遷移用）
     color: #4cc9f0;
 }
 
+
+
+/* =========================
+スマホ対応
+========================= */
+@media (max-width: 768px) {
+
+    /* =========================
+    TITLE SCREEN
+    ========================= */
+
+    .game-title {
+        font-size: 26px;
+        letter-spacing: 2px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .press-start {
+        margin-top: 30px;
+        padding: 8px 18px;
+        font-size: 12px;
+    }
+
+    /* =========================
+    HERO
+    ========================= */
+
+    .hero-content {
+        padding: 0 16px;
+    }
+
+    .hero-profile img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .hero-name {
+        font-size: 24px;
+    }
+
+    .hero-title {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .hero-sub,
+    .hero-meta {
+        font-size: 12px;
+    }
+
+    /* =========================
+    BUTTON
+    ========================= */
+
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+}
+
 </style>
 
 </head>

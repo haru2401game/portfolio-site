@@ -133,6 +133,70 @@ SAVE DATA STYLE WORKS
     filter: brightness(1.1);
 }
 
+
+
+/* =========================
+スマホ対応
+========================= */
+@media (max-width: 768px) {
+
+    /* グリッドを1列寄りに */
+    .save-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* スロット全体 */
+    .save-slot {
+        border-radius: 12px;
+    }
+
+    /* 画像小さく */
+    .slot-image {
+        height: 140px;
+    }
+
+    /* ヘッダー */
+    .slot-header {
+        font-size: 11px;
+        padding: 10px 12px;
+    }
+
+    /* 本文 */
+    .slot-body {
+        padding: 12px;
+    }
+
+    .save-title {
+        font-size: 16px;
+    }
+
+    .slot-body p {
+        font-size: 12px;
+    }
+
+    /* タグ */
+    .tag {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+
+    .save-slot::after {
+        display: none;
+    }
+
+    /* hover無効 */
+    .save-slot:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .save-slot:hover .slot-image img {
+        transform: none;
+        filter: none;
+    }
+}
+
 </style>
 
 </head>

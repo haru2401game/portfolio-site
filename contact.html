@@ -103,6 +103,75 @@ CONTACT CARD (RPG MENU)
     transition: 0.2s;
 }
 
+
+
+
+/* =========================
+スマホ対応
+========================= */
+@media (max-width: 768px) {
+
+    /* =========================
+    GRID
+    ========================= */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* =========================
+    CARD
+    ========================= */
+    .contact-card {
+        padding: 14px;
+    }
+
+    /* =========================
+    ICON
+    ========================= */
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 8px;
+    }
+
+    .contact-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* =========================
+    TEXT
+    ========================= */
+    .contact-title {
+        font-size: 14px;
+    }
+
+    .contact-desc {
+        font-size: 11px;
+    }
+
+    /* =========================
+    hover無効
+    ========================= */
+    .contact-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .contact-card:hover .contact-icon {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* =========================
+    タップ感
+    ========================= */
+    .contact-card:active {
+        transform: scale(0.97);
+    }
+}
+
 </style>
 
 </head>

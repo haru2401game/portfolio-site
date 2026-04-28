@@ -32,6 +32,10 @@ CARD BASE
     transition: 0.3s;
     position: relative;
     overflow: hidden;
+    transition: transform 0.35s cubic-bezier(.22,1,.36,1),
+                box-shadow 0.35s,
+                border-color 0.35s;
+    will-change: transform;
 }
 
 /* 光のライン演出 */
@@ -48,9 +52,9 @@ CARD BASE
 
 /* hover */
 .status-card:hover {
-    transform: translateY(-6px) scale(1.01);
-    border-color: rgba(76,201,240,0.5);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(76,201,240,0.6);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
 }
 
 /* =========================
@@ -211,8 +215,8 @@ SKILL TREE
 
 /* 丸 */
 .node-dot {
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
     background: #4cc9f0;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(76,201,240,0.6);
@@ -229,13 +233,13 @@ SKILL TREE
 }
 
 .node-title {
-    font-size: 13px;
+    font-size: 20px;
     color: #4cc9f0;
     margin-bottom: 4px;
 }
 
 .node-desc {
-    font-size: 12px;
+    font-size: 13px;
     color: #a8b0bd;
 }
 
@@ -256,6 +260,117 @@ SKILL TREE
 }
 
 
+
+/* =========================
+スマホ対応
+========================= */
+@media (max-width: 768px) {
+
+    /* グリッド → 1列 */
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* =========================
+    PROFILE
+    ========================= */
+
+    .profile-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .profile-img img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .name {
+        font-size: 24px;
+    }
+
+    .job {
+        font-size: 11px;
+    }
+
+    .meta {
+        font-size: 12px;
+    }
+
+    .profile-body p {
+        font-size: 12px;
+    }
+
+    .career div {
+        font-size: 11px;
+    }
+
+    /* =========================
+    CARD
+    ========================= */
+
+    .status-card {
+        padding: 16px;
+    }
+
+    .status-card p {
+        font-size: 12px;
+    }
+
+    .status-header h3 {
+        font-size: 13px;
+    }
+
+    /* hover無効（スマホでは不要） */
+    .status-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* =========================
+    SKILL TREE
+    ========================= */
+
+    .skill-tree {
+        margin-top: 40px;
+    }
+
+    .tree {
+        padding-left: 20px;
+    }
+
+    .tree::before {
+        left: 6px;
+    }
+
+    .node {
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+
+    .node-dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .node-title {
+        font-size: 16px;
+    }
+
+    .node-desc {
+        font-size: 12px;
+    }
+
+    .node-content {
+        padding: 10px 12px;
+    }
+
+    /* hover無効 */
+    .node:hover .node-content {
+        transform: none;
+    }
+}
 
 </style>
 
