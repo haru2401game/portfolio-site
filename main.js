@@ -50,6 +50,41 @@ gsap.utils.toArray(".work-card").forEach((card, i) => {
     });
 });
 
+gsap.utils.toArray(".node").forEach((node, i) => {
+    gsap.from(node, {
+        scrollTrigger: {
+            trigger: node,
+            start: "top 90%"
+        },
+        x: -30,
+        opacity: 0,
+        duration: 0.5,
+        delay: i * 0.1,
+        ease: "power2.out"
+    });
+});
+
+const nodes = document.querySelectorAll(".node");
+const detail = document.getElementById("treeDetail");
+const title = document.getElementById("detailTitle");
+const text = document.getElementById("detailText");
+
+nodes.forEach(node => {
+    node.addEventListener("mouseenter", () => {
+
+        const t = node.dataset.title;
+        const d = node.dataset.text;
+
+        // データがあるノードだけ反応
+        if (t && d) {
+            title.textContent = t;
+            text.textContent = d;
+
+            detail.classList.add("active");
+        }
+    });
+});
+
 /* =========================
 INIT
 ========================= */

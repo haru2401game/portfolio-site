@@ -170,6 +170,93 @@ PROFILE LARGE CARD
     margin-bottom: 4px;
 }
 
+/* =========================
+SKILL TREE
+========================= */
+
+.skill-tree {
+    margin-top: 60px;
+}
+
+.tree-title {
+    color: #4cc9f0;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* 縦ライン */
+.tree {
+    position: relative;
+    padding-left: 30px;
+}
+
+.tree::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(76,201,240,0.3);
+}
+
+/* ノード */
+.node {
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+/* 丸 */
+.node-dot {
+    width: 16px;
+    height: 16px;
+    background: #4cc9f0;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(76,201,240,0.6);
+    flex-shrink: 0;
+}
+
+/* 中身 */
+.node-content {
+    background: #141820;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: 0.25s;
+}
+
+.node-title {
+    font-size: 13px;
+    color: #4cc9f0;
+    margin-bottom: 4px;
+}
+
+.node-desc {
+    font-size: 12px;
+    color: #a8b0bd;
+}
+
+/* ホバー */
+.node:hover .node-content {
+    transform: translateX(6px);
+    border-color: rgba(76,201,240,0.5);
+}
+
+/* 強調ノード */
+.node.highlight .node-dot {
+    background: #ffd166;
+    box-shadow: 0 0 15px rgba(255,209,102,0.8);
+}
+
+.node.highlight .node-title {
+    color: #ffd166;
+}
+
+
+
 </style>
 
 </head>
@@ -199,103 +286,215 @@ ABOUT (STATUS UI)
 <section>
 <div class="container">
 
-<h2 data-fade>ABOUT / STATUS</h2>
+    <h2 data-fade>ABOUT / STATUS</h2>
 
-<div class="about-grid">
+    <div class="about-grid">
 
-    <!-- PROFILE -->
-    <div class="status-card primary profile-card" data-fade>
+        <!-- PROFILE -->
+        <div class="status-card primary profile-card" data-fade>
 
-        <div class="profile-top">
+            <div class="profile-top">
 
-            <!-- 顔画像 -->
-            <div class="profile-img">
-                <img src="images/profile.png" alt="profile">
+                <!-- 顔画像 -->
+                <div class="profile-img">
+                    <img src="images/profile.png" alt="profile">
+                </div>
+
+                <div class="profile-info">
+                    <div class="job">GAME PROGRAMMER</div>
+                    <h1 class="name">長屋 晴太</h1>
+                    <div class="meta">Unity / C++ / DirectXTK</div>
+                </div>
+
             </div>
 
-            <div class="profile-info">
-                <div class="job">GAME PROGRAMMER</div>
-                <h1 class="name">長屋 晴太</h1>
-                <div class="meta">Unity / C++ / DirectXTK</div>
+            <div class="profile-body">
+                <p>
+                    ゲームプログラマー志望。<br>
+                    愛知県豊橋市出身<br>
+                    UI設計・ゲームループ設計・演出設計を中心に開発しています。
+                </p>
+
+                <div class="career">
+                    <div>2025/04 - トライデントコンピュータ専門学校入学</div>
+                    <div>2025/05 - コンテスト初応募</div>
+                    <div>2025/06 - ゲームジャム初参加</div>
+                    <div>2025/09 - 「Over Fish」TCコンペ受賞＆企業プレゼン</div>
+                    <div>2025/11 - 「Click Hero」クラス内 総合1位/技術賞1位</div>
+                    <div>2026/01 - 「RETURNRECORD」「POTION BERSERKER」進級展展示</div>
+                </div>
             </div>
 
         </div>
 
-        <div class="profile-body">
+        <!-- MOTIVATION -->
+        <div class="status-card" data-fade>
+            <div class="status-header">
+                <h3>MOTIVATION</h3>
+                <span class="badge">WHY</span>
+            </div>
+
             <p>
-                ゲームプログラマー志望。<br>
-                愛知県豊橋市出身<br>
-                UI設計・ゲームループ設計・演出設計を中心に開発しています。
+                「遊びの面白さを設計できるエンジニア」を目指しています。<br>
+                プレイヤー体験を中心にした設計に強い興味があります。
             </p>
+        </div>
 
-            <div class="career">
-                <div>2025/04 - トライデントコンピュータ専門学校入学</div>
-                <div>2025/05 - コンテスト初応募</div>
-                <div>2025/06 - ゲームジャム初参加</div>
-                <div>2025/09 - 「Over Fish」TCコンペ受賞＆企業プレゼン</div>
-                <div>2025/11 - 「Click Hero」クラス内 総合1位/技術賞1位</div>
-                <div>2026/01 - 「RETURNRECORD」「POTION BERSERKER」進級展展示</div>
+        <!-- SKILLS -->
+        <div class="status-card" data-fade>
+            <div class="status-header">
+                <h3>SKILL STYLE</h3>
+                <span class="badge">CORE</span>
             </div>
+
+            <p>
+                ・ゲームループ設計<br>
+                ・UI / UX設計<br>
+                ・当たり判定 / シーン管理<br>
+                ・演出設計（テンポ・カメラ）
+            </p>
+        </div>
+
+        <!-- PROOF -->
+        <div class="status-card" data-fade>
+            <div class="status-header">
+                <h3>ACHIEVEMENT</h3>
+                <span class="badge">LOG</span>
+            </div>
+
+            <p>
+                ゲーム制作ブログを1年以上継続（100記事以上）<br>
+                Unity / DxLib / DirectXTKで複数作品制作
+            </p>
+        </div>
+
+        <!-- FUTURE -->
+        <div class="status-card" data-fade>
+            <div class="status-header">
+                <h3>FUTURE</h3>
+                <span class="badge">VISION</span>
+            </div>
+
+            <p>
+                「触っていて気持ちいいゲーム」を設計できるエンジニアへ<br>
+                面白さをコードで再現することにこだわっています
+            </p>
         </div>
 
     </div>
 
-    <!-- MOTIVATION -->
-    <div class="status-card" data-fade>
-        <div class="status-header">
-            <h3>MOTIVATION</h3>
-            <span class="badge">WHY</span>
+    <!-- =========================
+    SKILL TREE
+    ========================= -->
+    <div class="skill-tree" data-fade>
+
+        <h3 class="tree-title">経歴</h3>
+
+        <div class="tree">
+
+            <div class="node">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">START</div>
+                    <div class="node-desc">2025/04</div>
+                    <div class="node-desc">トライデントコンピュータ専門学校入学</div>
+                </div>
+            </div>
+
+            <div class="node">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">ゲーム開発スタート</div>
+                    <div class="node-desc">2025/05</div>
+                    <div class="node-desc">個人・チーム開発を始める</div>
+                </div>
+            </div>
+
+            <div class="node highlight">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">初ゲームジャム&受賞</div>
+                    <div class="node-desc">2025/06</div>
+                    <div class="node-desc">校内留学生共同ゲームジャム参加</div>
+                    <div class="node-desc">チーム作品がクリエイティブ賞受賞</div>
+                </div>
+            </div>
+
+            <div class="node">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">初コンテスト</div>
+                    <div class="node-desc">2025/06</div>
+                    <div class="node-desc">チーム開発作品をコンテストに初応募</div>
+                </div>
+            </div>
+
+            <div class="node">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">外部ゲームジャム</div>
+                    <div class="node-desc">2025/07</div>
+                    <div class="node-desc">学生チーム対抗ゲームジャム2025に参加</div>
+                </div>
+            </div>
+
+            <div class="node highlight">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">「Over Fish」 受賞</div>
+                    <div class="node-desc">2025/09</div>
+                    <div class="node-desc">初の企業プレゼン・企業賞受賞</div>
+                </div>
+            </div>
+
+            <div class="node highlight">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">「Click Hero」 受賞</div>
+                    <div class="node-desc">2025/11</div>
+                    <div class="node-desc">クラス内総合1位・技術賞1位</div>
+                </div>
+            </div>
+
+            <div class="node highlight">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">「POTION BERSERKER」 受賞</div>
+                    <div class="node-desc">2025/12</div>
+                    <div class="node-desc">クラス内総合1位</div>
+                </div>
+            </div>
+
+            <div class="node">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">進級展</div>
+                    <div class="node-desc">2026/01</div>
+                    <div class="node-desc">「RETURN RECORD」「POTION BERSERKER」</div>
+                    <div class="node-desc">個人とチームの両方で進級展に展示</div>
+                </div>
+            </div>
+
+            <div class="node">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">共催ゲームジャム</div>
+                    <div class="node-desc">2026/02</div>
+                    <div class="node-desc">企業様と学校共同主催のゲームジャムに参加</div>
+                </div>
+            </div>
+
+            <div class="node">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <div class="node-title">現在</div>
+                    <div class="node-desc">2026/04</div>
+                    <div class="node-desc">ポートフォリオ制作を始める</div>
+                </div>
+            </div>
+
         </div>
-
-        <p>
-            「遊びの面白さを設計できるエンジニア」を目指しています。<br>
-            プレイヤー体験を中心にした設計に強い興味があります。
-        </p>
     </div>
-
-    <!-- SKILLS -->
-    <div class="status-card" data-fade>
-        <div class="status-header">
-            <h3>SKILL STYLE</h3>
-            <span class="badge">CORE</span>
-        </div>
-
-        <p>
-            ・ゲームループ設計<br>
-            ・UI / UX設計<br>
-            ・当たり判定 / シーン管理<br>
-            ・演出設計（テンポ・カメラ）
-        </p>
-    </div>
-
-    <!-- PROOF -->
-    <div class="status-card" data-fade>
-        <div class="status-header">
-            <h3>ACHIEVEMENT</h3>
-            <span class="badge">LOG</span>
-        </div>
-
-        <p>
-            ゲーム制作ブログを1年以上継続（100記事以上）<br>
-            Unity / DxLib / DirectXTKで複数作品制作
-        </p>
-    </div>
-
-    <!-- FUTURE -->
-    <div class="status-card" data-fade>
-        <div class="status-header">
-            <h3>FUTURE</h3>
-            <span class="badge">VISION</span>
-        </div>
-
-        <p>
-            「触っていて気持ちいいゲーム」を設計できるエンジニアへ<br>
-            面白さをコードで再現することにこだわっています
-        </p>
-    </div>
-
-</div>
-
 </div>
 </section>
 
