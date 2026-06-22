@@ -284,7 +284,7 @@ STATUS UI（実績）
     }
 
     .status-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2列に固定 */
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
         margin-top: 20px;
     }
@@ -314,7 +314,7 @@ STATUS UI（実績）
     }
 
     .status-value {
-        font-size: 28px; /* 小さくして詰まり防止 */
+        font-size: 28px;
     }
 
     .status-desc {
@@ -322,7 +322,6 @@ STATUS UI（実績）
         margin-top: 4px;
     }
 
-    /* 3つ目を中央寄せ（ちょいテク） */
     .status-box:nth-child(3) {
         grid-column: span 2;
         max-width: 180px;
@@ -340,19 +339,17 @@ STATUS UI（実績）
         padding-bottom: 10px;
     }
 
-    /* スクロールバー消す */
     .works-scroll::-webkit-scrollbar {
         display: none;
     }
 
     .works-scroll .card {
-        flex: 0 0 85%; /* 1枚が画面の85% */
+        flex: 0 0 85%;
         scroll-snap-align: center;
 
         border-radius: 16px;
     }
 
-    /* VIEW ALLだけ少し違う */
     .works-scroll .view-all {
         display: flex;
         align-items: center;
@@ -450,19 +447,19 @@ MAIN CONTENT
 
                 <div class="status-box highlight" data-fade>
                     <div class="status-label">BLOG</div>
-                    <div class="status-value">140+</div>
+                    <div class="status-value">150+</div>
                     <div class="status-desc">記事投稿</div>
                 </div>
 
                 <div class="status-box highlight" data-fade>
                     <div class="status-label">WORKS</div>
-                    <div class="status-value">20+</div>
+                    <div class="status-value">24+</div>
                     <div class="status-desc">制作作品</div>
                 </div>
 
                 <div class="status-box highlight" data-fade>
                     <div class="status-label">GAME JAM</div>
-                    <div class="status-value">7+</div>
+                    <div class="status-value">8+</div>
                     <div class="status-desc">JAM参加</div>
                 </div>
 
