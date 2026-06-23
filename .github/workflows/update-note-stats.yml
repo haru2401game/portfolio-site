@@ -33,5 +33,5 @@ jobs:
 
           if ! git diff --cached --quiet; then
             git commit -m "Update note stats"
-            git push origin HEAD:main
+            git push
           fi
