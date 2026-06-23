@@ -540,29 +540,12 @@ function startGame() {
 }
 
 async function loadStats() {
-    console.log("start");
+    const response = await fetch("./data/stats.json");
+    const stats = await response.json();
 
-    try {
-        const response = await fetch("./data/stats.json");
-
-        console.log("response", response);
-
-        const stats = await response.json();
-
-        console.log("stats", stats);
-
-        const element = document.getElementById("blogCount");
-
-        console.log("element", element);
-
-        element.textContent = stats.blogPosts;
-    }
-    catch (error) {
-        console.error("ERROR", error);
-    }
+    document.getElementById("blogCount").textContent =
+        stats.blogPosts;
 }
-
-loadStats();
 
 loadStats();
 
