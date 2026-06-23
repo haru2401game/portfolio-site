@@ -447,7 +447,7 @@ MAIN CONTENT
 
                 <div class="status-box highlight" data-fade>
                     <div class="status-label">BLOG</div>
-                    <div class="status-value" id="blogCount">---</div>
+                    <div class="status-value">150+</div>
                     <div class="status-desc">記事投稿</div>
                 </div>
 
@@ -467,6 +467,45 @@ MAIN CONTENT
                     <div class="status-label">AWARD</div>
                     <div class="status-value">3+</div>
                     <div class="status-desc">受賞歴</div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <h2>LATEST BLOG</h2>
+
+            <div class="status-box highlight">
+
+                <div class="status-label">
+                    NEW POST
+                </div>
+
+                <a id="latestBlogLink"
+                href="#"
+                target="_blank"
+                style="text-decoration:none;color:inherit;">
+
+                    <div
+                        id="latestBlogTitle"
+                        style="
+                        font-size:20px;
+                        font-weight:700;
+                        margin-top:10px;">
+                        Loading...
+                    </div>
+
+                </a>
+
+                <div
+                    id="latestBlogDate"
+                    class="status-desc"
+                    style="margin-top:10px;">
+                    ----/--/--
                 </div>
 
             </div>
@@ -540,11 +579,24 @@ function startGame() {
 }
 
 async function loadStats() {
-    const response = await fetch("./data/stats.json");
-    const stats = await response.json();
 
-    document.getElementById("blogCount").textContent =
-        stats.blogPosts;
+    const response =
+        await fetch("./data/stats.json");
+
+    const stats =
+        await response.json();
+
+    document.getElementById(
+        "latestBlogTitle"
+    ).textContent = stats.latestTitle;
+
+    document.getElementById(
+        "latestBlogDate"
+    ).textContent = stats.latestDate;
+
+    document.getElementById(
+        "latestBlogLink"
+    ).href = stats.latestUrl;
 }
 
 loadStats();
