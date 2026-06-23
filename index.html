@@ -447,7 +447,7 @@ MAIN CONTENT
 
                 <div class="status-box highlight" data-fade>
                     <div class="status-label">BLOG</div>
-                    <div class="status-value">150+</div>
+                    <div class="status-value" id="blogCount">---</div>
                     <div class="status-desc">記事投稿</div>
                 </div>
 
@@ -538,6 +538,33 @@ function startGame() {
     });
 
 }
+
+async function loadStats() {
+    console.log("start");
+
+    try {
+        const response = await fetch("./data/stats.json");
+
+        console.log("response", response);
+
+        const stats = await response.json();
+
+        console.log("stats", stats);
+
+        const element = document.getElementById("blogCount");
+
+        console.log("element", element);
+
+        element.textContent = stats.blogPosts;
+    }
+    catch (error) {
+        console.error("ERROR", error);
+    }
+}
+
+loadStats();
+
+loadStats();
 
 </script>
 
