@@ -267,7 +267,27 @@ WORKS SAVE DATA UI
 
 <div class="save-grid">
 
-    <!-- SLOT 01 -->
+        <a href="info/ConneType.html" class="save-slot" data-category="2d unity" data-fade>
+
+        <div class="slot-image">
+            <img src="images/ConneType.png" alt="ConneType">
+        </div>
+
+        <div class="slot-header">
+            <span class="file-number"></span>
+            <span>2D TYP</span>
+        </div>
+
+        <div class="slot-body">
+            <div class="save-title">ConneType</div>
+            <div class="tag">2D / Typing</div>
+
+            <p>2D×タイピングゲーム</p>
+            <p>UI設計 / 外部URL</p>
+        </div>
+
+    </a>
+
     <a href="info/FlipMaze.html" class="save-slot" data-category="3d unity" data-fade>
 
         <div class="slot-image">
@@ -275,7 +295,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 01</span>
+            <span class="file-number"></span>
             <span>3D ACT</span>
         </div>
 
@@ -289,7 +309,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 02 -->
     <a href="info/PotionBerserker.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
@@ -297,7 +316,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 02</span>
+            <span class="file-number"></span>
             <span>2D ACT</span>
         </div>
 
@@ -311,7 +330,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 03 -->
     <a href="info/ReturnRecord.html" class="save-slot" data-category="2d C++" data-fade>
 
         <div class="slot-image">
@@ -319,7 +337,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 03</span>
+            <span class="file-number"></span>
             <span>TIME ACT</span>
         </div>
 
@@ -333,7 +351,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 04 -->
     <a href="info/ClickHero.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
@@ -341,7 +358,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 04</span>
+            <span class="file-number"></span>
             <span>Click</span>
         </div>
 
@@ -355,7 +372,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 05 -->
     <a href="info/OverFish.html" class="save-slot" data-category="2d C++" data-fade>
 
         <div class="slot-image">
@@ -363,7 +379,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 05</span>
+            <span class="file-number"></span>
             <span>2D ACT × TD</span>
         </div>
 
@@ -377,7 +393,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 06 -->
     <a href="info/DeepDungeon.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
@@ -385,7 +400,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 06</span>
+            <span class="file-number"></span>
             <span>2DACT × ROGUELIKE</span>
         </div>
 
@@ -399,7 +414,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 07 -->
     <a href="info/Koutei.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
@@ -407,7 +421,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 07</span>
+            <span class="file-number"></span>
             <span>2D ACT</span>
         </div>
 
@@ -421,7 +435,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 08 -->
     <a href="info/Angel.html" class="save-slot" data-category="2d unity" data-fade>
 
         <div class="slot-image">
@@ -429,7 +442,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 08</span>
+            <span class="file-number"></span>
             <span>MINI GAME / MULTI-ENDING</span>
         </div>
 
@@ -443,7 +456,6 @@ WORKS SAVE DATA UI
 
     </a>
 
-    <!-- SLOT 09 -->
     <a href="info/HookingBox.html" class="save-slot" data-category="2d C++" data-fade>
 
         <div class="slot-image">
@@ -451,7 +463,7 @@ WORKS SAVE DATA UI
         </div>
 
         <div class="slot-header">
-            <span>FILE 09</span>
+            <span class="file-number"></span>
             <span>2D ACT × WIRE</span>
         </div>
 
@@ -472,6 +484,17 @@ WORKS SAVE DATA UI
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+    const slots = document.querySelectorAll(".save-slot");
+
+    slots.forEach((slot, index) => {
+
+        const fileNumber =
+            String(slots.length - index).padStart(2, "0");
+
+        slot.querySelector(".file-number").textContent =
+            `FILE ${fileNumber}`;
+    });
 
     const buttons = document.querySelectorAll(".filter-btn");
     const items = document.querySelectorAll(".save-slot");
